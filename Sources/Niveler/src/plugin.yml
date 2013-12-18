@@ -1,0 +1,7 @@
+name: Niveler
+main: balckangel.Niveler.Niveler
+version: 1.0
+commands:
+  n:
+    description: Permet de niveler le terrain.
+    usage: /n [reload|on|off|hauteur] [rayon]

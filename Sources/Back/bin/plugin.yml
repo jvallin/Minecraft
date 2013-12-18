@@ -1,0 +1,7 @@
+name: Back
+main: balckangel.Back.Back
+version: 1.0
+commands:
+  back:
+    description: Teleporte le joueur a sa position avant de mourir
+    usage: /back [reload|on|off]

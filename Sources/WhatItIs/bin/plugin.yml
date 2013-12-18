@@ -1,0 +1,7 @@
+name: WhatItIs
+main: balckangel.WhatItIs.WhatItIs
+version: 1.0
+commands:
+  wii:
+    description: Permet de savoir le nom et la position d'un bloc
+    usage: /wii [reload|on|off]

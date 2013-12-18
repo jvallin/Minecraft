@@ -1,0 +1,7 @@
+name: Home
+main: balckangel.Home.Home
+version: 1.0
+commands:
+  h:
+    description: Permet de definir un point de teleportation permanent
+    usage: /h [reload|on|off|set|go|oui|non]

@@ -1,0 +1,7 @@
+name: EditSign
+main: balckangel.EditSign.EditSign
+version: 1.0
+commands:
+  es:
+    description: Permet de modifier le texte d'un panneau
+    usage: /es [reload|on|off|numero_de_ligne] [nouveau_texte]

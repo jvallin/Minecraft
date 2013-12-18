@@ -1,0 +1,7 @@
+name: PrivateProperty
+main: balckangel.PrivateProperty.PrivateProperty
+version: 1.0
+commands:
+  pp:
+    description: Permet la gestion de coffre et de four personnel
+    usage: /pp [reload|on|off|set]

@@ -1,0 +1,260 @@
+/* 1 janvier 2012 */
+
+* Mise en service des plugins :
+	- Back V0.0
+	- HearthStone V0.0
+	- PrivateChest V0.0
+
+
+/* 8 janvier 2012 */
+
+* Modification algorithmique de Back pour empêcher que le joueur ne se téléporte à son endroit de décès plus d'une fois.
+
+* Modification de l'objet à utiliser pour se téléporter dans HearthStone. Désormais c'est l'item Nugget (ID 371).
+
+* Ajout de la ligne dans PrivateChest pour reload automatiquement le texte du panneau après un set.
+
+* Ajout du nouveau plugin EditSign. Celui-ci permet d'éditer les panneaux sans les détruire.
+
+* Mise en service des plugins :
+	- Back v0.1
+	- HearthStone V0.1
+	- PrivateChest V0.1
+	- EditSign V0.0
+
+
+/* 1 février 2012 */
+
+* Modification de EditSign pour permettre d'insérer une phrase contenant des "espaces".
+
+* Retrait temporaire de HearthStone pour modification algorithmique importante (refonte du plugin).
+
+* Modification des plugins pour être compatible Minecraft v1.1.
+
+* Ajout du nouveau plugin Welcome. Celui-ci permet d'afficher des phrases modifiables à la connexion du joueur. 
+
+* Mise en service des plugins :
+	- Back v0.2
+	- EditSign v0.1
+	- PrivateChest v0.2
+	- Welcome v0.0
+
+	
+/* 2 février 2012 */
+
+* Modification algorithmique de Welcome pour permettre d'insérer les phrases.
+
+* Mise en service du plugin :
+	- Welcome v0.1
+	
+	
+/* 8 août 2012 */
+
+* Modification algorithmique de Welcome pour permettre de lire les phrases.
+
+* Changement du nom du plugin PrivateChest en PrivateProperty. PrivateProperty permet de gérer les coffres et les fours personnels.
+
+* Mise en service des plugins :
+	- Welcome v0.2
+	- PrivateProperty 0.3
+
+
+/* 9 août 2012 */
+
+* Ajout du plugin WhatItIs. Celui-ci permet de savoir quel est l'ID et le nom d'un bloc.	
+
+* Mise en service du plugin :
+		- WhatItIs v0.0
+	
+	
+/* 14 août 2012 */
+
+* Ajout du plugin Home. Celui-ci permet de définir un point de téléportation permanent.
+
+* Mise en service du plugin :
+	- Home v0.0
+	
+	
+/* 15 août 2012 */
+
+* Nettoyage du code des plugins (suppression des lignes ou tests inutiles).
+
+* Ajout du plugin OreDetector. Celui-ci permet de trouver un bloc spécifié dans un rayon de 100*100*100.
+
+Mise en service des plugins :
+
+	- Back v0.3
+	- EditSign v0.2
+	- Home v0.1
+	- OreDetector v0.0
+	- PrivateProperty 0.4
+	- Welcome v0.3
+	- WhatItIs v0.1
+	
+	
+/* 16 août 2012 */
+
+* Modification de WhatItIs pour permettre l'affichage de la position du bloc.
+
+* Modification de Welcome pour permettre l'affichage de toutes les phrases à la demande.
+
+* Modification de la phrase de "reload" sur tous les plugins. Elle est désormais dans le .xml
+
+* Modification de tous les plugins pour empêcher le serveur d'écrire les commandes joueurs.
+
+* Modification de EditSign pour permettre de remplir une ligne sans texte.
+
+* Modification de OreDetector pour permettre de définir un rayon (max 300) de recherche et pour afficher une phrase avant la recherche.
+
+* Mise en service des plugins :
+	- Back v0.4
+	- EditSign v0.3
+	- Home v0.2
+	- OreDetector v0.1
+	- PrivateProperty v0.5
+	- Welcome v0.4
+	- WhatItIs v0.2
+	
+	
+/* 17 août 2012 */
+
+* Modification algorithmique de OreDetector pour la recherche.
+
+* Mise en service du plugin :
+	- OreDetector v0.2
+	
+
+/* 21 août 2012 */
+
+* Modification de WhatItIs. Le plugin s'active par /wii pour un bloc et se désactive après.
+
+* Ajout du plugin Niveler qui permet d'aplanir le terrain.
+
+* Mise en service des plugins :
+	- WhatItIs v0.3
+	- Niveler v0.0
+	
+
+/* 25 août 2012 */
+
+* Modification de PrivateProperty pour bloquer les fours en fonctionnement.
+
+* Modification de tous les plugins pour permettre de les activer/désactiver par la console uniquement.
+
+* Mise en service des plugins :
+	- Back v0.5
+	- EditSign v0.4
+	- Home v0.3
+	- Niveler v0.1
+	- OreDetector v0.3
+	- PrivateProperty v0.6
+	- Welcome v0.5
+	- WhatItIs v0.4
+	
+	
+/* 28 août 2012 */
+
+* Ajout du plugin To qui permet de se téléporter vers un joueur plus facilement.
+
+* Mise en service du plugin :
+	- To v0.0
+	
+	
+/* 30 août 2012 */
+
+* Modification de OreDetector pour permettre définir la hauteur de recherche.
+
+* Mise en service du plugin :
+	- OreDetector v0.4
+
+	
+/* 12 septembre 2012 */
+
+* Modification de PrivateProperty pour empêcher les joueurs de détruire des blocs sur lesquelles un panneau ne leur appartenant pas est présent.
+
+* Mise en service du plugin :
+	- PrivateProperty v0.7
+	
+	
+/* 20 avril 2013 */
+
+* Ajout du plugin PvPArea qui permet de crée une zone délimité pour le PvP.
+
+* Mise en service du plugin :
+	- PvPArea v0.0
+	
+	
+/* 26 avril 2013 */
+
+* Refactoring & homogénéisation du code (méthodes, algorythmes ...) de tous les plugins.
+
+* Modification de Welcome pour permettre de réinitialiser toutes les phrases à "" 
+
+* Mise en service des plugins :
+	- Back v0.6
+	- EditSign v0.5
+	- Home v0.4
+	- Niveler v0.2
+	- OreDetector v0.5
+	- PrivateProperty v0.8
+	- PvPArea v0.1
+	- To v0.1
+	- Welcome v0.6
+	- WhatItIs v0.5
+	
+	
+/* 1 mai 2013 */
+
+* Refactoring du code de PrivateProperty.
+
+* Changement du nom du plugin PvPArea en PvP. PvP permet de gérer le PvP (gestion des équipes, des points, de la zone de PvP).
+
+* Modification de PvP pour empêcher que le joueur ne monte trop haut.
+
+* Modification de PvP pour gérer les équipes et les points.
+
+* Mise en service des plugins :
+	- PrivateProperty v0.9
+	- PvP v0.2
+	
+
+/* 11 décembre 2013 */
+
+* Modification des plugins utilisant un "listener" pour empêcher celui-ci de fonctionner si le plugin est désactivé.
+
+* Modification de WhatItIs pour enlever l'affichage de l'ID (la fonction "getId(int)" n'est plus à utiliser).
+
+* Modification de PrivateProperty pour annuler l'action uniquement si le bloc est un four/coffre.
+
+* Modification de PvP pour utiliser la fonction "setType(Material)" (la fonction "setTypeId(int)" n'est plus à utiliser).
+
+* Modification de PvP pour cacher/afficher les noms des joueurs selon l'état du plugin.
+
+* Mise en service des plugins :
+	- Back v1.0
+	- EditSign v1.0
+	- Home v1.0
+	- Niveler v1.0
+	- OreDetector v1.0
+	- PrivateProperty v1.0
+	- PvP v1.0
+	- To v1.0
+	- Welcome v1.0
+	- WhatItIs v1.0
+	
+	
+/* TO DO LIST */
+	
+* Utilisation de GitHub (jvallin / 123456aZ) pour les sources
+
+* Ajouter un plugin permettant de gérer un timer (dans PvP ?)
+
+* Tester les plugins
+
+* Modifier Home pour qu'il fasse office de "bousole" et ne téléporte plus (idem pour Back ?)
+
+* Modifier To pour que le joueur accepte ou non la téléportation
+
+* Ajouter les portes dans PrivateProperty
+
+* Ajout du plugin Quest qui permet de gérer les quêtes ?

@@ -1,0 +1,7 @@
+name: Quest
+main: balckangel.Quest.Quest
+version: 1.2
+commands:
+  q:
+    description: Permet la gestion des quetes
+    usage: /q [reload|on|off|liste|pts|clear] [numero_page]

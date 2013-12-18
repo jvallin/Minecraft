@@ -1,0 +1,7 @@
+name: NomDuPlugin
+main: balckangel.NomDuPlugin.NomDuPlugin
+version: 1.0
+commands:
+  cmd:
+    description: description du plugin
+    usage: /cmd [reload|on|off]
