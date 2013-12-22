@@ -241,20 +241,41 @@ Mise en service des plugins :
 	- To v1.0
 	- Welcome v1.0
 	- WhatItIs v1.0
+
+	
+/* 18 décembre 2013 */	
+	
+* Utilisation de GitHub (jvallin / 123456aZ).	
 	
 	
+/* 22 décembre 2013 */
+
+* Modification de PvP pour afficher un message lorsque l'on vide les équipes.
+
+* Modification de PvP pour enlever un point en cas de meutre au sein de son équipe.
+
+* Modification de PvP pour autoriser uniquement le serveur à vider les équipes.	
+
+* Modification de To pour permettre d'accepter ou non les téléportations vers soit.
+
+* Mise en service des plugins :
+	- PvP v1.1
+	- To v1.1
+
+
+
+	
+
 /* TO DO LIST */
-	
-* Utilisation de GitHub (jvallin / 123456aZ) pour les sources
 
 * Ajouter un plugin permettant de gérer un timer (dans PvP ?)
 
-* Tester les plugins
-
 * Modifier Home pour qu'il fasse office de "bousole" et ne téléporte plus (idem pour Back ?)
-
-* Modifier To pour que le joueur accepte ou non la téléportation
 
 * Ajouter les portes dans PrivateProperty
 
 * Ajout du plugin Quest qui permet de gérer les quêtes ?
+
+* revoquer un joueur de l'équipe (PvP)
+
+* Nouveau plugin (Points) pour gérer les points individuel

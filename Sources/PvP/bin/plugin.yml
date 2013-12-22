@@ -1,7 +1,7 @@
 name: PvP
 main: balckangel.PvP.PvP
-version: 1.0
+version: 1.1
 commands:
   pvp:
     description: Permet de gerer le PvP
-    usage: /pvp [reload|on|off|area|go|liste|clear|time] [rayon|temps]
+    usage: /pvp [reload|on|off|area|go|liste|clear] [rayon]

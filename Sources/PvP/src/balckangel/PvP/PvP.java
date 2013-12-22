@@ -3,9 +3,9 @@
 * PvP plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.0
+* @version 1.1
 * @date 20/04/2013
-* @modification 11/12/2013
+* @modification 22/12/2013
 * 
 * Principle : Permet de gérer le PvP (gestion des équipes, des points, de la zone de PvP)
 * Version de Bukkit : for MC 1.7.2
@@ -150,13 +150,6 @@ public class PvP extends JavaPlugin
 					
 					return true;
 				}
-				else if (args[0].equals("clear"))
-				{
-					equipe1.Vider();
-					equipe2.Vider();
-					
-					return true;
-				}
 				
 				if(sender.getName().equals("CONSOLE"))
 				{
@@ -190,6 +183,15 @@ public class PvP extends JavaPlugin
 						
 						sender.sendMessage(ChatColor.RED + config.getString("Configuration.Messages.Desactive"));
 						saveYML();
+						return true;
+					}
+					else if (args[0].equals("clear"))
+					{
+						equipe1.Vider();
+						equipe2.Vider();
+						
+						getServer().broadcastMessage(ChatColor.RED + config.getString("Configuration.Messages.Clear"));
+						
 						return true;
 					}
 					else
@@ -393,13 +395,29 @@ public class PvP extends JavaPlugin
 						
 						if(equipe1.Contient(tueur.getName()))
 						{
-							equipe1.plus(1);
-							getServer().broadcastMessage("l'equipe 1 gagne 1 point");						
+							if(equipe1.Contient(player.getName()))
+							{
+								equipe1.moins(1);
+								getServer().broadcastMessage("L'equipe 1 perd 1 point");
+							}
+							else
+							{
+								equipe1.plus(1);
+								getServer().broadcastMessage("L'equipe 1 gagne 1 point");
+							}
 						}
 						else if(equipe2.Contient(tueur.getName()))
 						{
-							equipe2.plus(1);
-							getServer().broadcastMessage("l'equipe 2 gagne 1 point");
+							if(equipe2.Contient(player.getName()))
+							{
+								equipe2.moins(1);
+								getServer().broadcastMessage("L'equipe 2 perd 1 point");
+							}
+							else
+							{
+								equipe2.plus(1);
+								getServer().broadcastMessage("L'equipe 2 gagne 1 point");
+							}
 						}
 					}
 				}
@@ -439,6 +457,7 @@ public class PvP extends JavaPlugin
 			config.createSection("Configuration.Messages.NoAir"); /* Si le joueur est à une hauteur supérieur à 190 */
 			config.createSection("Configuration.Messages.Rejoint"); /* Lorsqu'un joueur rejoint une équipe */
 			config.createSection("Configuration.Messages.Present"); /* Si le joueur est déjà dans une équipe */
+			config.createSection("Configuration.Messages.Clear"); /* Lorsque l'on vide les équipes */
 			
 			config.createSection("Configuration.Nombre.Max"); /* Rayon maximum */
 			
@@ -455,6 +474,7 @@ public class PvP extends JavaPlugin
 			config.set("Configuration.Messages.NoAir", "Attention, l'air se fait rare a cette hauteur, vous risquez de mourrir ...");
 			config.set("Configuration.Messages.Rejoint", "Bienvenue dans l'equipe ");
 			config.set("Configuration.Messages.Present", "Vous etes deja dans une equipe");
+			config.set("Configuration.Messages.Clear", "Les equipes ont ete videes");
 			
 			config.set("Configuration.Nombre.Max", 500);
 			
