@@ -262,6 +262,13 @@ Mise en service des plugins :
 	- PvP v1.1
 	- To v1.1
 
+	
+/* 23 décembre 2013 */
+
+* Ajout de Points qui permet de gérer les points individuels.
+
+* Mise en service du plugin :
+	- Points v1.0
 
 
 	
@@ -278,4 +285,4 @@ Mise en service des plugins :
 
 * revoquer un joueur de l'équipe (PvP)
 
-* Nouveau plugin (Points) pour gérer les points individuel
+* Vérifier à chaque plugin contenant clear que le plugin ne bug pas après (insertion dans Map notament)
