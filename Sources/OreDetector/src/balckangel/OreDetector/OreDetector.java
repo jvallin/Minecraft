@@ -3,9 +3,9 @@
 * OreDetector plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.0
+* @version 1.1
 * @date 15/08/2012
-* @modification 11/12/2013
+* @modification 25/12/2013
 * 
 * Principle : Permet au joueur de localiser le bloc spécifié le plus proche
 * Version de Bukkit : for MC 1.7.2
@@ -186,7 +186,7 @@ public class OreDetector extends JavaPlugin
 			config.createSection("Configuration.Messages.Reload"); /* Lorsque le plugin est reload */
 			config.createSection("Configuration.Messages.Permit"); /* Si l'utilisateur n'a pas le droit utiliser une commande */
 			config.createSection("Configuration.Messages.Nombre"); /* Si le rayon n'est pas un nombre */
-			config.createSection("Configuration.Messages.Unknown"); /* Si l'id n'existe pas */
+			config.createSection("Configuration.Messages.Unknown"); /* Si le nom du bloc n'existe pas */
 			config.createSection("Configuration.Messages.Search"); /* Lorsque le plugin recherche */
 			config.createSection("Configuration.Messages.Max"); /* Si le joueur dépasse le rayon max */
 			config.createSection("Configuration.Messages.Find"); /* Si une bloc est trouvé */
@@ -201,7 +201,7 @@ public class OreDetector extends JavaPlugin
 			config.set("Configuration.Messages.Reload", "Plugin OreDetector reload");
 			config.set("Configuration.Messages.Permit", "Vous ne pouvez pas utiliser cette commande");
 			config.set("Configuration.Messages.Nombre", "Veuillez entrer un nombre entier positif pour l'ID, le rayon et les hauteurs");
-			config.set("Configuration.Messages.Unknown", "Votre objet n'existe pas");
+			config.set("Configuration.Messages.Unknown", "Votre bloc n'existe pas");
 			config.set("Configuration.Messages.Search", "Recherche en cours ...");
 			config.set("Configuration.Messages.Max", "Veuillez entrer un rayon et des hauteurs inférieur à ");
 			config.set("Configuration.Messages.Find", "Un bloc est situé à ");

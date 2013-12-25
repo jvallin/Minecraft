@@ -3,9 +3,9 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.0
+* @version 1.1
 * @date 23/12/2013
-* @modification 23/12/2013
+* @modification 25/12/2013
 * 
 * Principle : Permet de gerer les points individuels
 * Version de Bukkit : for MC 1.7.2
@@ -191,6 +191,8 @@ public class Points extends JavaPlugin
                         
                         addPoints(nom, 1);
                     }
+                    
+                    addPoints(player.getName(), -1);
                 }
              	else if(event.getEntity() instanceof Zombie)
             	{
@@ -205,7 +207,7 @@ public class Points extends JavaPlugin
                     if(event.getEntity().getKiller() instanceof Player)
                     {
                         String nom = event.getEntity().getKiller().getName();
-                        addPoints(nom, 2);
+                        addPoints(nom, 1);
                     }
             	} 
             	else if(event.getEntity() instanceof Skeleton)
@@ -213,7 +215,7 @@ public class Points extends JavaPlugin
                     if(event.getEntity().getKiller() instanceof Player)
                     {
                         String nom = event.getEntity().getKiller().getName();
-                        addPoints(nom, 2);
+                        addPoints(nom, 3);
                     }
             	} 
             	else if(event.getEntity() instanceof Creeper)
@@ -253,13 +255,27 @@ public class Points extends JavaPlugin
 	{
 		int points = collection.get(nom);
 		
-		points = points + pts;
+		if(points + pts < 0)
+		{
+			points = 0;
+		}
+		else
+		{
+			points = points + pts;
+		}
+		
+		if(pts < 0)
+		{
+			getServer().broadcastMessage(nom + " a perdu " + Math.abs(pts) + " point(s). Son total est de " + points + " point(s).");
+		}
+		else
+		{
+			getServer().broadcastMessage(nom + " a gagne " + pts + " point(s). Son total est de " + points + " point(s).");
+		}
 		
 		collection.remove(nom);
 		
-		collection.put(nom, points);
-		
-		getServer().broadcastMessage(nom + " a gagne " + pts + "point(s). Son total est de " + points + " point(s).");		
+		collection.put(nom, points);				
 	}
 	
 	/* Fichier YML */

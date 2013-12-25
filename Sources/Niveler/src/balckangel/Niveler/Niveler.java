@@ -3,9 +3,9 @@
 * Niveler plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.0
+* @version 1.1
 * @date 21/08/2012
-* @modification 11/12/2013
+* @modification 25/12/2013
 * 
 * Principle : Permet de niveler le terrain.
 * Version de Bukkit : for MC 1.7.2
@@ -82,7 +82,7 @@ public class Niveler extends JavaPlugin
 					}
 				}
 			}
-			else if (args.length == 2) /* Si il y a deux arguments */
+			else if (args.length == 3) /* Si il y a deux arguments */
 			{				
 				Player player = null;
 				
@@ -95,9 +95,11 @@ public class Niveler extends JavaPlugin
 					sender.sendMessage(ChatColor.RED + config.getString("Configuration.Messages.Permit"));
 					return false;
 				}
-				
+
 				int h = 0; /* hauteur */
 				int r = 0; /* rayon de recherche */
+				String nom = "";
+				Material bloc = null;
 				Location pos = player.getLocation();
 				
 				try
@@ -108,6 +110,17 @@ public class Niveler extends JavaPlugin
 				catch (NumberFormatException e)
 				{
 					player.sendMessage(config.getString("Configuration.Messages.Entier"));
+					return false;
+				}
+				
+				try
+				{
+					nom = args[2];
+					bloc = Material.getMaterial(nom);
+				}
+				catch (Exception e)
+				{
+					player.sendMessage(config.getString("Configuration.Messages.Unknown"));
 					return false;
 				}
 				
@@ -142,7 +155,7 @@ public class Niveler extends JavaPlugin
 						for(int z=-r; z<=r; z++)
 						{
 							temp.setZ(pos.getZ()+z);
-							temp.getBlock().setType(Material.AIR);
+							temp.getBlock().setType(bloc);
 						}						
 					}					
 				}
@@ -179,6 +192,7 @@ public class Niveler extends JavaPlugin
 			config.createSection("Configuration.Nombre.Haut.Max"); /* Hauteur maximum */
 			config.createSection("Configuration.Messages.Progress"); /* Lorsque le plugin aplani */
 			config.createSection("Configuration.Messages.Finish"); /* Lorsque le plugin à fini */
+			config.createSection("Configuration.Messages.Unknown"); /* Si le nom du bloc n'existe pas */
 			
 			
 			config.set("Configuration.Active", false);
@@ -194,6 +208,7 @@ public class Niveler extends JavaPlugin
 			config.set("Configuration.Nombre.Haut.Max", 100);
 			config.set("Configuration.Messages.Progress", "Aplanissement en cours ...");
 			config.set("Configuration.Messages.Finish", "Aplanissement termine");
+			config.set("Configuration.Messages.Unknown", "Votre bloc n'existe pas");
 			
 			saveYML();
 			config = YamlConfiguration.loadConfiguration(configFile);

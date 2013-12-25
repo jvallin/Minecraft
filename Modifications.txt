@@ -271,6 +271,21 @@ Mise en service des plugins :
 	- Points v1.0
 
 
+/* 25 décembre 2013 */
+
+* Modification de Points pour ajouter des points négatif en cas de décès.
+
+* Modification de Niveler pour choisir le bloc.
+
+* Modification de OreDetector pour corriger les phrases.
+
+* Mise en service des plugins :
+	- OreDetector v1.1
+	- Points v1.1
+	- Niveler v1.1
+	
+	
+	
 	
 
 /* TO DO LIST */
@@ -286,3 +301,5 @@ Mise en service des plugins :
 * revoquer un joueur de l'équipe (PvP)
 
 * Vérifier à chaque plugin contenant clear que le plugin ne bug pas après (insertion dans Map notament)
+
+* Modificer Points pour ajouter les récompenses
