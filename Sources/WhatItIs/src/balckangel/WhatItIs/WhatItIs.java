@@ -51,6 +51,7 @@ public class WhatItIs extends JavaPlugin
 
 	public void onDisable() /* Actions exécutées à la fermeture du plugin */
 	{
+		collection.clear();
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)

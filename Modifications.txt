@@ -285,6 +285,19 @@ Mise en service des plugins :
 	- Niveler v1.1
 	
 	
+/* 26 décembre 2013 */
+	
+* Vérification/Modification des plugins utlisant des Map<> et ArrayList<> (problème en cas de clear)
+	
+* Modification de Points pour ajouter les points sorcière.
+
+* Modification de Points pour ajouter les récompenses.
+
+* Modification de Points pour remettre à 0 les points lorsque le joueur meurt.
+
+* Mise en service des plugins :
+	- Points v1.2
+	
 	
 	
 
@@ -299,7 +312,3 @@ Mise en service des plugins :
 * Ajout du plugin Quest qui permet de gérer les quêtes ?
 
 * revoquer un joueur de l'équipe (PvP)
-
-* Vérifier à chaque plugin contenant clear que le plugin ne bug pas après (insertion dans Map notament)
-
-* Modificer Points pour ajouter les récompenses

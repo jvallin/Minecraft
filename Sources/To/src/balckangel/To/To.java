@@ -49,6 +49,7 @@ public class To extends JavaPlugin
 
 	public void onDisable() /* Actions exécutées à la fermeture du plugin */
 	{
+		autorisation.clear();
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String[] args)

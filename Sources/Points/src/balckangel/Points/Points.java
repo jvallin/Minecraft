@@ -3,9 +3,9 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.1
+* @version 1.2
 * @date 23/12/2013
-* @modification 25/12/2013
+* @modification 26/12/2013
 * 
 * Principle : Permet de gerer les points individuels
 * Version de Bukkit : for MC 1.7.2
@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
@@ -32,12 +33,15 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Spider;
+import org.bukkit.entity.Witch;
 import org.bukkit.entity.Zombie;
+import org.bukkit.inventory.ItemStack;
 
 public class Points extends JavaPlugin
 {
@@ -137,6 +141,8 @@ public class Points extends JavaPlugin
 							collection.put(player.getName(), 0);
 						}
 	                    
+	                    getServer().broadcastMessage(ChatColor.RED + config.getString("Configuration.Messages.Clear"));
+	                    
 	                    return true;
 	                }
 					else
@@ -181,56 +187,168 @@ public class Points extends JavaPlugin
         {
 			if((Boolean) config.get("Configuration.Active"))
             {
-                if(event.getEntity() instanceof Player)
-                {
-                    Player player = (Player) event.getEntity();
-                    
-                    if(player.getKiller() instanceof Player)
-                    {
-                        String nom = player.getKiller().getName();
-                        
-                        addPoints(nom, 1);
-                    }
-                    
-                    addPoints(player.getName(), -1);
-                }
-             	else if(event.getEntity() instanceof Zombie)
-            	{
-                    if(event.getEntity().getKiller() instanceof Player)
-                    {
-                        String nom = event.getEntity().getKiller().getName();                        
-                        addPoints(nom, 1);
-                    }
-            	} 
-             	else if(event.getEntity() instanceof Spider)
-            	{
-                    if(event.getEntity().getKiller() instanceof Player)
-                    {
-                        String nom = event.getEntity().getKiller().getName();
-                        addPoints(nom, 1);
-                    }
-            	} 
-            	else if(event.getEntity() instanceof Skeleton)
-            	{
-                    if(event.getEntity().getKiller() instanceof Player)
-                    {
-                        String nom = event.getEntity().getKiller().getName();
-                        addPoints(nom, 3);
-                    }
-            	} 
-            	else if(event.getEntity() instanceof Creeper)
-            	{
-                    if(event.getEntity().getKiller() instanceof Player)
-                    {
-                        String nom = event.getEntity().getKiller().getName();
-                        addPoints(nom, 3);
-                    }
-            	} 
-            	else if((event.getEntity() instanceof Enderman) && (event.getEntity().getKiller() instanceof Player))
-                {
-                    String nom = event.getEntity().getKiller().getName();
-                    addPoints(nom, 5);
-                }
+				int level = 0;
+				String nom = "";
+				
+				if(event.getEntity().getKiller() instanceof Player)
+				{
+					Player killer = (Player) event.getEntity().getKiller();
+					nom = killer.getName();
+					
+	                if(event.getEntity() instanceof Player || event.getEntity() instanceof Zombie || event.getEntity() instanceof Spider)
+	            	{                      
+	                    level = addPoints(nom, 1);	                    
+	            	}
+	             	else if(event.getEntity() instanceof CaveSpider)
+	            	{
+	                    level = addPoints(nom, 2);	                    
+	            	} 
+	            	else if(event.getEntity() instanceof Skeleton || event.getEntity() instanceof Creeper || event.getEntity() instanceof Witch)
+	            	{
+	                    level = addPoints(nom, 3);	                    
+	            	} 
+	            	else if(event.getEntity() instanceof Enderman)
+	                {
+	            		level = addPoints(nom, 5);
+	                }
+	                
+	                if(level > 0)
+	                {
+	                	if(level == 1)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.WOOD_SWORD, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une epee en bois");
+	                	}
+	                	else if (level == 2)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.LEATHER_BOOTS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une paire de botte en cuir");
+	                	}
+	                	else if (level == 3)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.LEATHER_HELMET, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un casque en cuir");
+	                	}
+	                	else if (level == 4)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.LEATHER_LEGGINGS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un pantalon en cuir");
+	                	}
+	                	else if (level == 5)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.LEATHER_CHESTPLATE, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un plastron en cuir");
+	                	}
+	                	else if (level == 6)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.STONE_SWORD, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une epee en pierre");
+	                	}
+	                	else if (level == 7)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.GOLD_BOOTS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une paire de botte en or");
+	                	}
+	                	else if (level == 8)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.GOLD_HELMET, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un casque en or");
+	                	}
+	                	else if (level == 9)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.GOLD_LEGGINGS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un pantalon en or");
+	                	}
+	                	else if (level == 10)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.GOLD_CHESTPLATE, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un plastron en or");
+	                	}
+	                	else if (level == 11)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.GOLD_SWORD, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une epee en or");
+	                	}
+	                	else if (level == 12)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.IRON_BOOTS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une paire de botte en fer");
+	                	}
+	                	else if (level == 13)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.IRON_HELMET, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un casque en fer");
+	                	}
+	                	else if (level == 14)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.IRON_LEGGINGS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un pantalon en fer");
+	                	}
+	                	else if (level == 15)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.IRON_CHESTPLATE, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un plastron en fer");
+	                	}
+	                	else if (level == 16)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.IRON_SWORD, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une epee en fer");
+	                	}
+	                	else if (level == 17)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.CHAINMAIL_BOOTS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une paire de botte en maille");
+	                	}
+	                	else if (level == 18)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.CHAINMAIL_HELMET, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un casque en maille");
+	                	}
+	                	else if (level == 19)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.CHAINMAIL_LEGGINGS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un pantalon en maille");
+	                	}
+	                	else if (level == 20)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.CHAINMAIL_CHESTPLATE, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un plastron en maille");
+	                	}
+	                	else if (level == 21)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.DIAMOND_SWORD, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une epee en diamant");
+	                	}
+	                	else if (level == 22)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.DIAMOND_BOOTS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne une paire de botte en diamant");
+	                	}
+	                	else if (level == 23)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.DIAMOND_HELMET, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un casque en diamant");
+	                	}
+	                	else if (level == 24)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.DIAMOND_LEGGINGS, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un pantalon en diamant");
+	                	}
+	                	else if (level == 25)
+	                	{
+	                		killer.getInventory().addItem(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
+	                		getServer().broadcastMessage(nom + " a gagne un plastron en diamant");
+	                	}
+	                }
+            	}
+				else
+				{
+					if(event.getEntity() instanceof Player)
+	                {
+	                    Player player = (Player) event.getEntity();
+	                    addPoints(player.getName(), -1);
+	                }
+				}
             }
         }
 		
@@ -251,31 +369,33 @@ public class Points extends JavaPlugin
         }
 	}
 	
-	public void addPoints(String nom, int pts)
+	public int addPoints(String nom, int pts)
 	{
 		int points = collection.get(nom);
 		
-		if(points + pts < 0)
+		if(pts < 0)
 		{
+			getServer().broadcastMessage(nom + " est mort. Son total etait de " + points + " point(s).");
 			points = 0;
 		}
 		else
 		{
 			points = points + pts;
-		}
-		
-		if(pts < 0)
-		{
-			getServer().broadcastMessage(nom + " a perdu " + Math.abs(pts) + " point(s). Son total est de " + points + " point(s).");
-		}
-		else
-		{
 			getServer().broadcastMessage(nom + " a gagne " + pts + " point(s). Son total est de " + points + " point(s).");
 		}
 		
 		collection.remove(nom);
 		
-		collection.put(nom, points);				
+		collection.put(nom, points);
+		
+		if(((points)%50 < (points-pts)%50))
+		{
+			return ((points)/50);
+		}
+		else
+		{
+			return -1;
+		}
 	}
 	
 	/* Fichier YML */
@@ -294,6 +414,7 @@ public class Points extends JavaPlugin
 			config.createSection("Configuration.Messages.Desactive"); /* Lorsque l'on désactive le plugin */
 			config.createSection("Configuration.Messages.Reload"); /* Lorsque le plugin est reload */
 			config.createSection("Configuration.Messages.Permit"); /* Si l'utilisateur n'a pas le droit utiliser une commande */
+			config.createSection("Configuration.Messages.Clear"); /* Lorsque l'on vide la Map */
 			
 			
 			config.set("Configuration.Active", true);
@@ -302,6 +423,7 @@ public class Points extends JavaPlugin
 			config.set("Configuration.Messages.Desactive", "Plugin Points desactive");
 			config.set("Configuration.Messages.Reload", "Plugin Points reload");
 			config.set("Configuration.Messages.Permit", "Vous ne pouvez pas utiliser cette commande");
+			config.set("Configuration.Messages.Clear", "Les points ont ete reinitialises");
 			
 			
 			saveYML();
