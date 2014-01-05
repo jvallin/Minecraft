@@ -252,7 +252,7 @@ Mise en service des plugins :
 
 * Modification de PvP pour afficher un message lorsque l'on vide les équipes.
 
-* Modification de PvP pour enlever un point en cas de meutre au sein de son équipe.
+* Modification de PvP pour enlever un point en cas de meurtre au sein de son équipe.
 
 * Modification de PvP pour autoriser uniquement le serveur à vider les équipes.	
 
@@ -289,16 +289,30 @@ Mise en service des plugins :
 	
 * Vérification/Modification des plugins utlisant des Map<> et ArrayList<> (problème en cas de clear)
 	
-* Modification de Points pour ajouter les points sorcière.
+* Modification de Points pour ajouter les points Sorcière.
 
 * Modification de Points pour ajouter les récompenses.
 
 * Modification de Points pour remettre à 0 les points lorsque le joueur meurt.
 
-* Mise en service des plugins :
+* Mise en service du plugin :
 	- Points v1.2
 	
 	
+/* 5 janvier 2014 */
+	
+* Modification de Points pour ajouter les points Ghast, Blaze et PigZombie.
+
+* Modification de Points pour ajouter le High Score.
+
+* Mise en service du plugin :
+	- Points v1.3
+
+
+
+
+
+
 	
 
 /* TO DO LIST */
@@ -309,6 +323,14 @@ Mise en service des plugins :
 
 * Ajouter les portes dans PrivateProperty
 
+* Vérifier les bug dans PrivateProperty
+
 * Ajout du plugin Quest qui permet de gérer les quêtes ?
 
 * revoquer un joueur de l'équipe (PvP)
+
+* corriger le bug dans Points qui fais que le joueur ne perd pas ses points s'il est tuer par un autre joueur ?
+
+* Ajouter les slim et cub magma (1)?
+
+* Créer un .bat pour faire des sauvegardes

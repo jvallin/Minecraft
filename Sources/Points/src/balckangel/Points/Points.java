@@ -3,9 +3,9 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.2
+* @version 1.3
 * @date 23/12/2013
-* @modification 26/12/2013
+* @modification 05/01/2014
 * 
 * Principle : Permet de gerer les points individuels
 * Version de Bukkit : for MC 1.7.2
@@ -33,9 +33,12 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.entity.Blaze;
 import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.Enderman;
+import org.bukkit.entity.Ghast;
+import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Spider;
@@ -170,6 +173,11 @@ public class Points extends JavaPlugin
 						player.sendMessage("Vous avez : "+collection.get(player.getName())+" point(s).");
 						return true;
 					}
+					else if(args[0].equalsIgnoreCase("high"))
+					{
+						player.sendMessage(config.getString("Configuration.Messages.HighScore") + config.getString("Configuration.Name.HighScore") + " avec " + config.getInt("Configuration.Nombre.HighScore") + " point(s).");
+						return true;
+					}
 				}
 			}		
 		}
@@ -195,7 +203,7 @@ public class Points extends JavaPlugin
 					Player killer = (Player) event.getEntity().getKiller();
 					nom = killer.getName();
 					
-	                if(event.getEntity() instanceof Player || event.getEntity() instanceof Zombie || event.getEntity() instanceof Spider)
+	                if(event.getEntity() instanceof Player || (event.getEntity() instanceof Zombie && !(event.getEntity() instanceof PigZombie)) || event.getEntity() instanceof Spider || event.getEntity() instanceof Ghast)
 	            	{                      
 	                    level = addPoints(nom, 1);	                    
 	            	}
@@ -207,6 +215,10 @@ public class Points extends JavaPlugin
 	            	{
 	                    level = addPoints(nom, 3);	                    
 	            	} 
+	            	else if(event.getEntity() instanceof PigZombie || event.getEntity() instanceof Blaze)
+	                {
+	            		level = addPoints(nom, 4);
+	                }
 	            	else if(event.getEntity() instanceof Enderman)
 	                {
 	            		level = addPoints(nom, 5);
@@ -388,6 +400,19 @@ public class Points extends JavaPlugin
 		
 		collection.put(nom, points);
 		
+		if(points > config.getInt("Configuration.Nombre.HighScore"))
+		{
+			if(! nom.equals(config.getString("Configuration.Name.HighScore")))
+			{
+				getServer().broadcastMessage(nom + " a battu le HighScore. Il est desormais de " + points + " point(s).");
+				config.set("Configuration.Name.HighScore", nom);
+			}
+			config.set("Configuration.Nombre.HighScore", points);
+			
+			saveYML();
+			config = YamlConfiguration.loadConfiguration(configFile);
+		}
+		
 		if(((points)%50 < (points-pts)%50))
 		{
 			return ((points)/50);
@@ -415,6 +440,9 @@ public class Points extends JavaPlugin
 			config.createSection("Configuration.Messages.Reload"); /* Lorsque le plugin est reload */
 			config.createSection("Configuration.Messages.Permit"); /* Si l'utilisateur n'a pas le droit utiliser une commande */
 			config.createSection("Configuration.Messages.Clear"); /* Lorsque l'on vide la Map */
+			config.createSection("Configuration.Messages.HighScore"); /* Message pour afficher le HighScore */
+			config.createSection("Configuration.Name.HighScore"); /* Message pour afficher le HighScore */
+			config.createSection("Configuration.Nombre.HighScore"); /* HighScore */
 			
 			
 			config.set("Configuration.Active", true);
@@ -424,6 +452,9 @@ public class Points extends JavaPlugin
 			config.set("Configuration.Messages.Reload", "Plugin Points reload");
 			config.set("Configuration.Messages.Permit", "Vous ne pouvez pas utiliser cette commande");
 			config.set("Configuration.Messages.Clear", "Les points ont ete reinitialises");
+			config.set("Configuration.Messages.HighScore", "Le High Score est attribue a ");
+			config.set("Configuration.Name.HighScore", "personne");
+			config.set("Configuration.Nombre.HighScore", 0);
 			
 			
 			saveYML();
