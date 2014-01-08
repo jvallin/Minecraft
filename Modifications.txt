@@ -309,28 +309,57 @@ Mise en service des plugins :
 	- Points v1.3
 
 
+/* 8 janvier 2014 */
 
+* Modification de mineur de PrivateProperty et EditSign.
 
+* Modification de PrivatePropery pour empêcher le bloc derrière le panneau d'être détruit
+
+* Création d'un .bat pour faire des sauvegardes
+
+* Modification de Points pour permettre au serveur d'utiliser la commende /p high
+
+* Modification de Points pour ajouter une commande /p all qui retourne la liste de tous les points des joueurs.
+
+* Modification de Points pour corriger le fait que le joueur ne perd pas de points s'il est tué par un autre joueur.
+
+* Modification de Points pour ajouter les points Slime et MagmaCube.
+
+* Mise en service des plugins :
+	- EditSign v1.1
+	- PrivateProperty v1.1
+	- Points v1.4
 
 
 	
 
 /* TO DO LIST */
 
-* Ajouter un plugin permettant de gérer un timer (dans PvP ?)
+* Ajouter un plugin permettant de gérer un timer non-agression (dans PvP ?)
+* Révoquer un joueur de l'équipe dans PvP => Ajouter le leader ?
+* Modifier PvP pour créer les équipe à la demande du joueur et non plus en "dur" ? 
+	=> mot de passe ??
+	=> nom ??
+	=> taille ??
+	=> ban ??
 
-* Modifier Home pour qu'il fasse office de "bousole" et ne téléporte plus (idem pour Back ?)
+* Modifier Home pour qu'il fasse office de "boussole" et ne téléporte plus (idem pour Back ?) 
 
-* Ajouter les portes dans PrivateProperty
-
-* Vérifier les bug dans PrivateProperty
+* Ajouter les portes dans PrivateProperty ??
 
 * Ajout du plugin Quest qui permet de gérer les quêtes ?
+	=> coupler avec Points ?
 
-* revoquer un joueur de l'équipe (PvP)
+* Ajout du plugin Event qui permet de déclencher des event définit ??
+	=> coupler avec points ?
 
-* corriger le bug dans Points qui fais que le joueur ne perd pas ses points s'il est tuer par un autre joueur ?
+* Affichage de tous les points à la sortie de la nuit ??
+* Trouver un moyen de n'afficher de les 10 meilleur score dans Points via /p all (car sinon spam de la shoutBox si de nombreux player)
+	=> Créer un classe "Joueur" (String nom, int poins) avec tri
+	=> utiliser max(liste.size, 10)
+	=> céer une méthode qui remplis les Joueurs, les tri et retoune les nom des max(liste.size, 10) premiers joueurs
+	=> afficher ces joueurs
 
-* Ajouter les slim et cub magma (1)?
+* dans Home, ajouter une phrase pour aouter la position du joueur a la connesxion ?
 
-* Créer un .bat pour faire des sauvegardes
+* Revoir l'algo de OreDetecor ??

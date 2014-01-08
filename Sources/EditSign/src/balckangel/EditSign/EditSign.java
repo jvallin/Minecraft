@@ -3,9 +3,9 @@
 * EditSign plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.0
+* @version 1.1
 * @date 08/01/2012
-* @modification 11/12/2013
+* @modification 08/01/0214
 * 
 * Principle : Permet de modifier le texte d'un panneau
 * Version de Bukkit : for MC 1.7.2
@@ -186,7 +186,7 @@ public class EditSign extends JavaPlugin
 							{
 								content = EditSign.collection.get(player_name);
 								
-								panneau.setLine(content.getNuLigne()-1, content.getMessage()); /* set de la ligne a faire */
+								panneau.setLine(content.getNuLigne()-1, content.getMessage()); /* set de la ligne à faire */
 								panneau.update(true); /* Pour reload le texte du panneau */
 								player.sendMessage(EditSign.config.getString("Configuration.Messages.Check")+player_name);
 							}

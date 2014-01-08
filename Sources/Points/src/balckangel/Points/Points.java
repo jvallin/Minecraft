@@ -3,9 +3,9 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.3
+* @version 1.4
 * @date 23/12/2013
-* @modification 05/01/2014
+* @modification 08/01/2014
 * 
 * Principle : Permet de gerer les points individuels
 * Version de Bukkit : for MC 1.7.2
@@ -25,6 +25,7 @@ import java.util.Map;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.EventHandler;
@@ -41,6 +42,7 @@ import org.bukkit.entity.Ghast;
 import org.bukkit.entity.PigZombie;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
+import org.bukkit.entity.Slime;
 import org.bukkit.entity.Spider;
 import org.bukkit.entity.Witch;
 import org.bukkit.entity.Zombie;
@@ -113,6 +115,21 @@ public class Points extends JavaPlugin
 		{
 			if (args.length == 1) /* Si il y a un argument */
 			{
+				if(args[0].equalsIgnoreCase("high"))
+				{
+					sender.sendMessage(config.getString("Configuration.Messages.HighScore") + config.getString("Configuration.Name.HighScore") + " avec " + config.getInt("Configuration.Nombre.HighScore") + " point(s).");
+					return true;
+				}
+				else if(args[0].equalsIgnoreCase("all"))
+				{
+					OfflinePlayer[] liste = getServer().getOfflinePlayers();
+					for(int i=0; i<liste.length; i++)
+					{
+						sender.sendMessage("Le joueur "+liste[i].getName()+" possede "+collection.get(liste[i].getName())+" point(s).");
+					}
+					return true;
+				}
+				
 				if(sender.getName().equals("CONSOLE")) /* si c'est la console */
 				{
 					if (args[0].equalsIgnoreCase("reload"))
@@ -173,11 +190,6 @@ public class Points extends JavaPlugin
 						player.sendMessage("Vous avez : "+collection.get(player.getName())+" point(s).");
 						return true;
 					}
-					else if(args[0].equalsIgnoreCase("high"))
-					{
-						player.sendMessage(config.getString("Configuration.Messages.HighScore") + config.getString("Configuration.Name.HighScore") + " avec " + config.getInt("Configuration.Nombre.HighScore") + " point(s).");
-						return true;
-					}
 				}
 			}		
 		}
@@ -203,19 +215,34 @@ public class Points extends JavaPlugin
 					Player killer = (Player) event.getEntity().getKiller();
 					nom = killer.getName();
 					
-	                if(event.getEntity() instanceof Player || (event.getEntity() instanceof Zombie && !(event.getEntity() instanceof PigZombie)) || event.getEntity() instanceof Spider || event.getEntity() instanceof Ghast)
-	            	{                      
-	                    level = addPoints(nom, 1);	                    
+	                if(event.getEntity() instanceof Player
+	                		|| (event.getEntity() instanceof Zombie && !(event.getEntity() instanceof PigZombie))
+	                		|| event.getEntity() instanceof Spider 
+	                		|| event.getEntity() instanceof Ghast)
+	            	{                   
+	                	level = addPoints(nom, 1);	                    
 	            	}
+	                else if (event.getEntity() instanceof Slime) //Slime ou MagmaCube
+	                {
+	                	Slime slime = (Slime) event.getEntity();
+	                	
+	                	if(slime.getSize() == 4)
+	                	{
+	                		level = addPoints(nom, 1);
+	                	}
+	                }
 	             	else if(event.getEntity() instanceof CaveSpider)
 	            	{
 	                    level = addPoints(nom, 2);	                    
 	            	} 
-	            	else if(event.getEntity() instanceof Skeleton || event.getEntity() instanceof Creeper || event.getEntity() instanceof Witch)
+	            	else if(event.getEntity() instanceof Skeleton 
+	            			|| event.getEntity() instanceof Creeper 
+	            			|| event.getEntity() instanceof Witch)
 	            	{
 	                    level = addPoints(nom, 3);	                    
 	            	} 
-	            	else if(event.getEntity() instanceof PigZombie || event.getEntity() instanceof Blaze)
+	            	else if(event.getEntity() instanceof PigZombie 
+	            			|| event.getEntity() instanceof Blaze)
 	                {
 	            		level = addPoints(nom, 4);
 	                }
@@ -353,14 +380,12 @@ public class Points extends JavaPlugin
 	                	}
 	                }
             	}
-				else
-				{
-					if(event.getEntity() instanceof Player)
-	                {
-	                    Player player = (Player) event.getEntity();
-	                    addPoints(player.getName(), -1);
-	                }
-				}
+				
+				if(event.getEntity() instanceof Player)
+                {
+                    Player player = (Player) event.getEntity();
+                    addPoints(player.getName(), -1);
+                }				
             }
         }
 		
@@ -407,10 +432,8 @@ public class Points extends JavaPlugin
 				getServer().broadcastMessage(nom + " a battu le HighScore. Il est desormais de " + points + " point(s).");
 				config.set("Configuration.Name.HighScore", nom);
 			}
-			config.set("Configuration.Nombre.HighScore", points);
-			
+			config.set("Configuration.Nombre.HighScore", points);			
 			saveYML();
-			config = YamlConfiguration.loadConfiguration(configFile);
 		}
 		
 		if(((points)%50 < (points-pts)%50))

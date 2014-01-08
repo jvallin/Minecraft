@@ -3,9 +3,9 @@
 * PrivateProperty plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.0
+* @version 1.1
 * @date 01/01/2012
-* @modification 11/12/2013
+* @modification 08/01/2014
 * 
 * Principle : Permet la gestion de coffre et de four personnel
 * Version de Bukkit : for MC 1.7.2
@@ -153,7 +153,7 @@ public class PrivateProperty extends JavaPlugin
 						loc = event.getClickedBlock().getLocation();
 						loc.setY(loc.getY()+1);
 						
-						if(loc.getBlock().getType() == Material.WALL_SIGN || loc.getBlock().getType() == Material.SIGN_POST) /* Si il ya un panneau au dessus */
+						if(loc.getBlock().getType() == Material.WALL_SIGN || loc.getBlock().getType() == Material.SIGN_POST) /* Si il y a un panneau au dessus */
 						{
 							Sign panneau = (Sign) loc.getBlock().getState();
 							String[] contenu = panneau.getLines();
@@ -190,7 +190,7 @@ public class PrivateProperty extends JavaPlugin
 								
 								if(possible == true) /* Si possible */
 								{
-									panneau.setLine(0, "["+player_name+"]"); /* set de la ligne 0 a faire */
+									panneau.setLine(0, "["+player_name+"]"); /* set de la ligne 0 à faire */
 									panneau.update(true); /* Pour reload le texte du panneau */
 									player.sendMessage(PrivateProperty.config.getString("Configuration.Messages.Locked")+player_name);
 								}
@@ -225,24 +225,24 @@ public class PrivateProperty extends JavaPlugin
 				String player_name = player.getName();
 				Location loc = event.getBlock().getLocation();
 				
-				if(event.getBlock().getType() == Material.CHEST || event.getBlock().getType() == Material.FURNACE || event.getBlock().getType() == Material.BURNING_FURNACE) /* si c'est un coffre ou un four */
+				//if(event.getBlock().getType() == Material.CHEST || event.getBlock().getType() == Material.FURNACE || event.getBlock().getType() == Material.BURNING_FURNACE) /* si c'est un coffre ou un four */
+				//{
+				if(IsPan(loc))
 				{
-					if(IsPan(loc))
+					if(pano != null)
 					{
-						if(pano != null)
-						{
-							Sign panneau = (Sign) pano;
-							String[] contenu = panneau.getLines();
+						Sign panneau = (Sign) pano;
+						String[] contenu = panneau.getLines();
+						
+						IsPossible(contenu, player_name);
 							
-							IsPossible(contenu, player_name);
-								
-							if(possible == false) /* Si pas possible */
-							{
-								event.setCancelled(true);
-								player.sendMessage(PrivateProperty.config.getString("Configuration.Messages.NotPermitBreak"));
-							}
+						if(possible == false) /* Si pas possible */
+						{
+							event.setCancelled(true);
+							player.sendMessage(PrivateProperty.config.getString("Configuration.Messages.NotPermitBreak"));
 						}
 					}
+				//}
 				}
 				pano = null;
 				possible = false;
@@ -340,7 +340,7 @@ public class PrivateProperty extends JavaPlugin
 			config.createSection("Configuration.Messages.NotPermitChest"); /* Si ce n'est pas son coffre */
 			config.createSection("Configuration.Messages.NotPermitFurnace"); /* Si ce n'est pas son four */
 			config.createSection("Configuration.Messages.NotPermitSign"); /* Si ce n'est pas son panneau */
-			config.createSection("Configuration.Messages.NotPermitBreak"); /* Si il y a un panneau derrière qui n'est pas à lui */
+			config.createSection("Configuration.Messages.NotPermitBreak"); /* Si il y a un panneau derriére qui n'est pas é lui */
 			
 			
 			config.set("Configuration.Active", true);

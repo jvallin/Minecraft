@@ -14,9 +14,9 @@ RMDIR world_the_end /s /q
 MD world
 MD world_nether
 MD world_the_end
-XCOPY "C:\Users\Balckangel\Desktop\Serveur\world" world /e
-XCOPY "C:\Users\Balckangel\Desktop\Serveur\world_nether" world_nether /e
-XCOPY "C:\Users\Balckangel\Desktop\Serveur\world_the_end" world_the_end /e
+XCOPY "..\Serveur\world" world /e
+XCOPY "..\Serveur\world_nether" world_nether /e
+XCOPY "..\S erveur\world_the_end" world_the_end /e
 goto :END
 
 :END
