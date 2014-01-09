@@ -3,9 +3,9 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.4
+* @version 1.5
 * @date 23/12/2013
-* @modification 08/01/2014
+* @modification 09/01/2014
 * 
 * Principle : Permet de gerer les points individuels
 * Version de Bukkit : for MC 1.7.2
@@ -20,6 +20,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -123,10 +125,22 @@ public class Points extends JavaPlugin
 				else if(args[0].equalsIgnoreCase("all"))
 				{
 					OfflinePlayer[] liste = getServer().getOfflinePlayers();
-					for(int i=0; i<liste.length; i++)
+					
+					ArrayList<Joueur> ordre = new ArrayList<Joueur>();
+					
+					int nombre = Math.max(liste.length, 10);
+					int i =1;
+					
+					ordre = classement(liste);
+					
+					sender.sendMessage("Le classements des " + nombre + " meilleurs joueurs : ");
+					
+					for(Joueur j : ordre)
 					{
-						sender.sendMessage("Le joueur "+liste[i].getName()+" possede "+collection.get(liste[i].getName())+" point(s).");
+						sender.sendMessage(i+") "+j.toString());
+						i++;
 					}
+					
 					return true;
 				}
 				
@@ -444,6 +458,20 @@ public class Points extends JavaPlugin
 		{
 			return -1;
 		}
+	}
+	
+	public ArrayList<Joueur> classement(OfflinePlayer[] players)
+	{
+		ArrayList<Joueur> liste = new ArrayList<Joueur>();
+		
+		for(int i=0; i<players.length; i++)
+		{
+			liste.add(new Joueur(players[i].getName(), collection.get(players[i].getName())));
+		}
+		
+		Collections.sort(liste, Collections.reverseOrder());
+
+		return liste;
 	}
 	
 	/* Fichier YML */

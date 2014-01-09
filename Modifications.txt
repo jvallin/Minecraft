@@ -331,6 +331,14 @@ Mise en service des plugins :
 	- Points v1.4
 
 
+/* 9 janvier 2014 */
+	
+* Modification de Points pour afficher uniquements les 10 premiers via /p all
+
+* Mise en service du plugin :
+	- Points v1.5
+	
+	
 	
 
 /* TO DO LIST */
@@ -354,11 +362,6 @@ Mise en service des plugins :
 	=> coupler avec points ?
 
 * Affichage de tous les points à la sortie de la nuit ??
-* Trouver un moyen de n'afficher de les 10 meilleur score dans Points via /p all (car sinon spam de la shoutBox si de nombreux player)
-	=> Créer un classe "Joueur" (String nom, int poins) avec tri
-	=> utiliser max(liste.size, 10)
-	=> céer une méthode qui remplis les Joueurs, les tri et retoune les nom des max(liste.size, 10) premiers joueurs
-	=> afficher ces joueurs
 
 * dans Home, ajouter une phrase pour aouter la position du joueur a la connesxion ?
 
