@@ -3,9 +3,9 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.5
+* @version 1.6
 * @date 23/12/2013
-* @modification 09/01/2014
+* @modification 20/01/2014
 * 
 * Principle : Permet de gerer les points individuels
 * Version de Bukkit : for MC 1.7.2
@@ -128,7 +128,7 @@ public class Points extends JavaPlugin
 					
 					ArrayList<Joueur> ordre = new ArrayList<Joueur>();
 					
-					int nombre = Math.max(liste.length, 10);
+					int nombre = Math.min(liste.length, 10);
 					int i =1;
 					
 					ordre = classement(liste);
@@ -205,7 +205,39 @@ public class Points extends JavaPlugin
 						return true;
 					}
 				}
-			}		
+			}	
+			else if (args.length == 3) /* Si il y a trois argument */
+			{
+				if(sender.getName().equals("CONSOLE")) /* si c'est la console */
+				{
+					if(args[0].equalsIgnoreCase("add"))
+					{
+						Player dest = getServer().getPlayerExact(args[1]);
+						
+						if(dest != null && collection.containsKey(dest.getName()))
+						{
+							int pts = 0;
+							try
+							{
+								pts = Integer.parseInt(args[2]);
+							}
+							catch (NumberFormatException e)
+							{
+								sender.sendMessage(ChatColor.RED + config.getString("Configuration.Messages.Nombre"));
+								return false;
+							}
+							
+							addPoints(dest.getName(), pts);
+						}
+						else
+						{
+							sender.sendMessage(ChatColor.RED + config.getString("Configuration.Messages.Offline"));
+						}
+						
+						return true;
+					}
+				}
+			}
 		}
 		
 		sender.sendMessage(ChatColor.RED + config.getString("Configuration.Messages.Permit"));
@@ -466,7 +498,10 @@ public class Points extends JavaPlugin
 		
 		for(int i=0; i<players.length; i++)
 		{
-			liste.add(new Joueur(players[i].getName(), collection.get(players[i].getName())));
+			if(collection.get(players[i].getName()) != null)
+			{
+				liste.add(new Joueur(players[i].getName(), collection.get(players[i].getName())));
+			}
 		}
 		
 		Collections.sort(liste, Collections.reverseOrder());
@@ -494,6 +529,8 @@ public class Points extends JavaPlugin
 			config.createSection("Configuration.Messages.HighScore"); /* Message pour afficher le HighScore */
 			config.createSection("Configuration.Name.HighScore"); /* Message pour afficher le HighScore */
 			config.createSection("Configuration.Nombre.HighScore"); /* HighScore */
+			config.createSection("Configuration.Messages.Offline"); /* Si le destinataire n'est pas connecté */
+			config.createSection("Configuration.Messages.Nombre"); /* Si le nombre de points n'est pas un entier */
 			
 			
 			config.set("Configuration.Active", true);
@@ -506,6 +543,8 @@ public class Points extends JavaPlugin
 			config.set("Configuration.Messages.HighScore", "Le High Score est attribue a ");
 			config.set("Configuration.Name.HighScore", "personne");
 			config.set("Configuration.Nombre.HighScore", 0);
+			config.set("Configuration.Messages.Offline", "Joueur non connecte. Utilisez la commande list pour afficher les joueurs connectes");
+			config.set("Configuration.Messages.Nombre", "Veuillez entrer un nombre entier positif pour le nombre de points");
 			
 			
 			saveYML();

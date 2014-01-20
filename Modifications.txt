@@ -337,6 +337,15 @@ Mise en service des plugins :
 
 * Mise en service du plugin :
 	- Points v1.5
+
+
+/* 20 janvier 2014 */
+	
+* Modification de Points pour ajouter des points au joueur via la console
+
+* Mise en service du plugin :
+	- Points v1.6
+
 	
 	
 	
@@ -354,6 +363,7 @@ Mise en service des plugins :
 * Modifier Home pour qu'il fasse office de "boussole" et ne téléporte plus (idem pour Back ?) 
 
 * Ajouter les portes dans PrivateProperty ??
+* Ajouter les alambic dans PrivateProperty
 
 * Ajout du plugin Quest qui permet de gérer les quêtes ?
 	=> coupler avec Points ?
@@ -362,7 +372,8 @@ Mise en service des plugins :
 	=> coupler avec points ?
 
 * Affichage de tous les points à la sortie de la nuit ??
+* Utiliser uniquement la classe Joueur dans Points
 
-* dans Home, ajouter une phrase pour aouter la position du joueur a la connesxion ?
+* dans Home, ajouter une phrase pour aouter la position du joueur a la connexion ?
 
 * Revoir l'algo de OreDetecor ??
