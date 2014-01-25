@@ -3,9 +3,9 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.6
+* @version 1.7
 * @date 23/12/2013
-* @modification 20/01/2014
+* @modification 25/01/2014
 * 
 * Principle : Permet de gerer les points individuels
 * Version de Bukkit : for MC 1.7.2
@@ -36,6 +36,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Blaze;
 import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Creeper;
@@ -49,6 +50,7 @@ import org.bukkit.entity.Spider;
 import org.bukkit.entity.Witch;
 import org.bukkit.entity.Zombie;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 
 public class Points extends JavaPlugin
 {
@@ -262,7 +264,6 @@ public class Points extends JavaPlugin
 					nom = killer.getName();
 					
 	                if(event.getEntity() instanceof Player
-	                		|| (event.getEntity() instanceof Zombie && !(event.getEntity() instanceof PigZombie))
 	                		|| event.getEntity() instanceof Spider 
 	                		|| event.getEntity() instanceof Ghast)
 	            	{                   
@@ -277,6 +278,23 @@ public class Points extends JavaPlugin
 	                		level = addPoints(nom, 1);
 	                	}
 	                }
+	                else if  (event.getEntity() instanceof Zombie)
+	                {
+	                	Zombie zombie = (Zombie) event.getEntity();
+	                	
+	                	if(zombie.isBaby())
+	                	{
+	                		level = addPoints(nom, 2);
+	                	}
+	                	else if(event.getEntity() instanceof PigZombie)
+	                	{
+	                		level = addPoints(nom, 4);
+	                	}
+	                	else
+	                	{
+	                		level = addPoints(nom, 1);
+	                	}
+	                }
 	             	else if(event.getEntity() instanceof CaveSpider)
 	            	{
 	                    level = addPoints(nom, 2);	                    
@@ -287,8 +305,7 @@ public class Points extends JavaPlugin
 	            	{
 	                    level = addPoints(nom, 3);	                    
 	            	} 
-	            	else if(event.getEntity() instanceof PigZombie 
-	            			|| event.getEntity() instanceof Blaze)
+	            	else if(event.getEntity() instanceof Blaze)
 	                {
 	            		level = addPoints(nom, 4);
 	                }
@@ -424,6 +441,13 @@ public class Points extends JavaPlugin
 	                		killer.getInventory().addItem(new ItemStack(Material.DIAMOND_CHESTPLATE, 1));
 	                		getServer().broadcastMessage(nom + " a gagne un plastron en diamant");
 	                	}
+	                	else if (level > 25)
+	                	{
+	                		ItemStack item = new ItemStack(Material.ENCHANTED_BOOK, 1);
+	                		item = addBookEnchantment(item);
+	                		killer.getInventory().addItem(item);
+	                		getServer().broadcastMessage(nom + " a gagne un livre enchanté");
+	                	}
 	                }
             	}
 				
@@ -507,6 +531,120 @@ public class Points extends JavaPlugin
 		Collections.sort(liste, Collections.reverseOrder());
 
 		return liste;
+	}
+	
+	public ItemStack addBookEnchantment(ItemStack item)
+	{
+        EnchantmentStorageMeta meta = (EnchantmentStorageMeta) item.getItemMeta();
+        meta.addStoredEnchant(randomEnchant(), 1, true);
+        item.setItemMeta(meta);
+        return item;
+    }
+	
+	public Enchantment randomEnchant()
+	{
+		Enchantment enchant = Enchantment.DURABILITY;
+		
+		int random = (int)(Math.random() * (25-1)) + 1;
+		
+		if(random == 1)
+    	{
+			enchant = Enchantment.ARROW_DAMAGE;
+    	}
+    	else if (random == 2)
+    	{
+    		enchant = Enchantment.ARROW_FIRE;
+    	}
+    	else if (random == 3)
+    	{
+    		enchant = Enchantment.ARROW_INFINITE;
+    	}
+    	else if (random == 4)
+    	{
+    		enchant = Enchantment.ARROW_KNOCKBACK;
+    	}
+    	else if (random == 5)
+    	{
+    		enchant = Enchantment.DAMAGE_ALL;
+    	}
+    	else if (random == 6)
+    	{
+    		enchant = Enchantment.DAMAGE_ARTHROPODS;
+    	}
+    	else if (random == 7)
+    	{
+    		enchant = Enchantment.DAMAGE_UNDEAD;
+    	}
+    	else if (random == 8)
+    	{
+    		enchant = Enchantment.DIG_SPEED;
+    	}
+    	else if (random == 9)
+    	{
+    		enchant = Enchantment.DURABILITY;
+    	}
+    	else if (random == 10)
+    	{
+    		enchant = Enchantment.FIRE_ASPECT;
+    	}
+    	else if (random == 11)
+    	{
+    		enchant = Enchantment.KNOCKBACK;
+    	}
+    	else if (random == 12)
+    	{
+    		enchant = Enchantment.LOOT_BONUS_BLOCKS;
+    	}
+    	else if (random == 13)
+    	{
+    		enchant = Enchantment.LOOT_BONUS_MOBS;
+    	}
+    	else if (random == 14)
+    	{
+    		enchant = Enchantment.LUCK;
+    	}
+    	else if (random == 15)
+    	{
+    		enchant = Enchantment.LURE;
+    	}
+    	else if (random == 16)
+    	{
+    		enchant = Enchantment.OXYGEN;
+    	}
+    	else if (random == 17)
+    	{
+    		enchant = Enchantment.PROTECTION_ENVIRONMENTAL;
+    	}
+    	else if (random == 18)
+    	{
+    		enchant = Enchantment.PROTECTION_EXPLOSIONS;
+    	}
+    	else if (random == 19)
+    	{
+    		enchant = Enchantment.PROTECTION_FALL;
+    	}
+    	else if (random == 20)
+    	{
+    		enchant = Enchantment.PROTECTION_FIRE;
+    	}
+    	else if (random == 21)
+    	{
+    		enchant = Enchantment.PROTECTION_PROJECTILE;
+    	}
+    	else if (random == 22)
+    	{
+    		enchant = Enchantment.SILK_TOUCH;
+    	}
+    	else if (random == 23)
+    	{
+    		enchant = Enchantment.THORNS;
+    	}
+    	else if (random == 24)
+    	{
+    		enchant = Enchantment.WATER_WORKER;
+    	}
+		
+		return enchant;
 	}
 	
 	/* Fichier YML */

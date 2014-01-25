@@ -333,7 +333,7 @@ Mise en service des plugins :
 
 /* 9 janvier 2014 */
 	
-* Modification de Points pour afficher uniquements les 10 premiers via /p all
+* Modification de Points pour afficher uniquements les 10 premiers via /p all.
 
 * Mise en service du plugin :
 	- Points v1.5
@@ -341,11 +341,20 @@ Mise en service des plugins :
 
 /* 20 janvier 2014 */
 	
-* Modification de Points pour ajouter des points au joueur via la console
+* Modification de Points pour ajouter des points au joueur via la console.
 
 * Mise en service du plugin :
 	- Points v1.6
 
+	
+/* 25 janvier 2014 */
+	
+* Modification de Points pour ajouter les livres enchantés après 1250 points.
+
+* Modification de Points pour ajouter les points Baby Zombies.
+
+* Mise en service du plugin :
+	- Points v1.7
 	
 	
 	
@@ -377,3 +386,5 @@ Mise en service des plugins :
 * dans Home, ajouter une phrase pour aouter la position du joueur a la connexion ?
 
 * Revoir l'algo de OreDetecor ??
+
+* Ajouter la commande Next dans Point pour savoir le prochain drop
