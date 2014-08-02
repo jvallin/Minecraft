@@ -3,12 +3,12 @@
 * OreDetector plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.1
+* @version 1.2
 * @date 15/08/2012
-* @modification 25/12/2013
+* @modification 02/08/2014
 * 
 * Principle : Permet au joueur de localiser le bloc spécifié le plus proche
-* Version de Bukkit : for MC 1.7.2
+* Version de Bukkit : for MC 1.7.10
 *
 */
 

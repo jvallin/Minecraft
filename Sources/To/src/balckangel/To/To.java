@@ -3,12 +3,12 @@
 * To plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.1
+* @version 1.2
 * @date 28/08/2012
-* @modification 22/12/2013
+* @modification 02/08/2014
 * 
 * Principle : Permet de se téléporter vers un autre joueur
-* Version de Bukkit : for MC 1.7.2
+* Version de Bukkit : for MC 1.7.10
 *
 */
 

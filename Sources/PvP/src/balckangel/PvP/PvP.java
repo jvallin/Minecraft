@@ -3,12 +3,12 @@
 * PvP plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.1
+* @version 1.2
 * @date 20/04/2013
-* @modification 22/12/2013
+* @modification 02/08/2014
 * 
 * Principle : Permet de gérer le PvP (gestion des équipes, des points, de la zone de PvP)
-* Version de Bukkit : for MC 1.7.2
+* Version de Bukkit : for MC 1.7.10
 *
 */
 
@@ -375,7 +375,7 @@ public class PvP extends JavaPlugin
 						areaList.add(nom);
 						player.sendMessage(ChatColor.RED + config.getString("Configuration.Messages.NoAir"));
 					}
-					player.damage(1);
+					player.damage(1.00);
 				}
 			}
 		}

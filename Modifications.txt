@@ -357,8 +357,29 @@ Mise en service des plugins :
 	- Points v1.7
 	
 	
-	
+/* 02 août 2014*/	
 
+* Modification des plugins pour être compatible avec la version 1.7.10
+
+* Modification de PvP pour prendre en compte la modification du type du paramètre de la méthode Player.damage(Double arg0)
+
+* Compilation des plugins Points, To avec des "Warning" dû à des méthodes "deprecated"
+
+* Mise en service des plugins :
+	- Back v1.1
+	- EditSign v1.2
+	- Home v1.1
+	- Niveler v1.2
+	- OreDetector v1.2
+	- Points v1.8
+	- PrivateProperty v1.2
+	- PvP v1.2
+	- To v1.2
+	- Welcome v1.1
+	- WhatItIs v1.1
+	
+	
+	
 /* TO DO LIST */
 
 * Ajouter un plugin permettant de gérer un timer non-agression (dans PvP ?)

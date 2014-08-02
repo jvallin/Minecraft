@@ -1,6 +1,6 @@
 name: Welcome
 main: balckangel.Welcome.Welcome
-version: 1.0
+version: 1.1
 commands:
   w:
     description: Permet d'afficher un message d'accueil lorsqu'un joueur se connecte

@@ -3,12 +3,12 @@
 * EditSign plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.1
+* @version 1.2
 * @date 08/01/2012
-* @modification 08/01/0214
+* @modification 02/08/0214
 * 
 * Principle : Permet de modifier le texte d'un panneau
-* Version de Bukkit : for MC 1.7.2
+* Version de Bukkit : for MC 1.7.10
 *
 */
 

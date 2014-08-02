@@ -1,6 +1,6 @@
 name: OreDetector
 main: balckangel.OreDetector.OreDetector
-version: 1.1
+version: 1.2
 commands:
   od:
     description: Permet au joueur de localiser le bloc specifie le plus proche

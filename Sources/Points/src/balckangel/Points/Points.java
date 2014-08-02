@@ -3,12 +3,12 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.7
+* @version 1.8
 * @date 23/12/2013
-* @modification 25/01/2014
+* @modification 02/08/2014
 * 
 * Principle : Permet de gerer les points individuels
-* Version de Bukkit : for MC 1.7.2
+* Version de Bukkit : for MC 1.7.10
 *
 */
 

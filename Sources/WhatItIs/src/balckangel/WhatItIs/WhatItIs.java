@@ -3,12 +3,12 @@
 * WhatItIs plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.0
+* @version 1.1
 * @date 09/08/2012
-* @modification 11/12/2013
+* @modification 02/08/2014
 * 
 * Principle : Permet de savoir le nom et la position d'un bloc
-* Version de Bukkit : for MC 1.7.2
+* Version de Bukkit : for MC 1.7.10
 *
 */
 

@@ -1,6 +1,6 @@
 name: Back
 main: balckangel.Back.Back
-version: 1.0
+version: 1.1
 commands:
   back:
     description: Teleporte le joueur a sa position avant de mourir

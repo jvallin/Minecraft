@@ -1,6 +1,6 @@
 name: PvP
 main: balckangel.PvP.PvP
-version: 1.1
+version: 1.2
 commands:
   pvp:
     description: Permet de gerer le PvP

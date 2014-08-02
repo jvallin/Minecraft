@@ -1,6 +1,6 @@
 name: To
 main: balckangel.To.To
-version: 1.1
+version: 1.2
 commands:
   to:
     description: Permet de se teleporter vers un autre joueur

@@ -3,12 +3,12 @@
 * PrivateProperty plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.1
+* @version 1.2
 * @date 01/01/2012
-* @modification 08/01/2014
+* @modification 02/08/2014
 * 
 * Principle : Permet la gestion de coffre et de four personnel
-* Version de Bukkit : for MC 1.7.2
+* Version de Bukkit : for MC 1.7.10
 *
 */
 
