@@ -379,6 +379,12 @@ Mise en service des plugins :
 	- WhatItIs v1.1
 	
 	
+/* 25 août 2014*/	
+
+* Debut du plugin Concours permettant de lancer des concours automatiquement
+
+
+	
 	
 /* TO DO LIST */
 
