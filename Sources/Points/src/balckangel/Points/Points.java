@@ -3,9 +3,9 @@
 * Points plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.8
+* @version 1.9
 * @date 23/12/2013
-* @modification 02/08/2014
+* @modification 27/08/2014
 * 
 * Principle : Permet de gerer les points individuels
 * Version de Bukkit : for MC 1.7.10
@@ -121,7 +121,7 @@ public class Points extends JavaPlugin
 			{
 				if(args[0].equalsIgnoreCase("high"))
 				{
-					sender.sendMessage(config.getString("Configuration.Messages.HighScore") + config.getString("Configuration.Name.HighScore") + " avec " + config.getInt("Configuration.Nombre.HighScore") + " point(s).");
+					sender.sendMessage(config.getString("Configuration.HighScore.Messages") + config.getString("Configuration.HighScore.Name") + " avec " + config.getInt("Configuration.HighScore.Nombre") + " point(s).");
 					return true;
 				}
 				else if(args[0].equalsIgnoreCase("all"))
@@ -488,21 +488,21 @@ public class Points extends JavaPlugin
 		else
 		{
 			points = points + pts;
-			getServer().broadcastMessage(nom + " a gagne " + pts + " point(s). Son total est de " + points + " point(s).");
+			//getServer().broadcastMessage(nom + " a gagne " + pts + " point(s). Son total est de " + points + " point(s).");
 		}
 		
 		collection.remove(nom);
 		
 		collection.put(nom, points);
 		
-		if(points > config.getInt("Configuration.Nombre.HighScore"))
+		if(points > config.getInt("Configuration.HighScore.Nombre"))
 		{
-			if(! nom.equals(config.getString("Configuration.Name.HighScore")))
+			if(! nom.equals(config.getString("Configuration.HighScore.Name")))
 			{
 				getServer().broadcastMessage(nom + " a battu le HighScore. Il est desormais de " + points + " point(s).");
-				config.set("Configuration.Name.HighScore", nom);
+				config.set("Configuration.HighScore.Name", nom);
 			}
-			config.set("Configuration.Nombre.HighScore", points);			
+			config.set("Configuration.HighScore.Nombre", points);			
 			saveYML();
 		}
 		
@@ -664,11 +664,12 @@ public class Points extends JavaPlugin
 			config.createSection("Configuration.Messages.Reload"); /* Lorsque le plugin est reload */
 			config.createSection("Configuration.Messages.Permit"); /* Si l'utilisateur n'a pas le droit utiliser une commande */
 			config.createSection("Configuration.Messages.Clear"); /* Lorsque l'on vide la Map */
-			config.createSection("Configuration.Messages.HighScore"); /* Message pour afficher le HighScore */
-			config.createSection("Configuration.Name.HighScore"); /* Message pour afficher le HighScore */
-			config.createSection("Configuration.Nombre.HighScore"); /* HighScore */
 			config.createSection("Configuration.Messages.Offline"); /* Si le destinataire n'est pas connecté */
 			config.createSection("Configuration.Messages.Nombre"); /* Si le nombre de points n'est pas un entier */
+			
+			config.createSection("Configuration.HighScore.Messages"); /* Message pour afficher le HighScore */
+			config.createSection("Configuration.HighScore.Name"); /* Nom de la personne qui détient le HighScore */
+			config.createSection("Configuration.HighScore.Nombre"); /* HighScore */
 			
 			
 			config.set("Configuration.Active", true);
@@ -678,12 +679,12 @@ public class Points extends JavaPlugin
 			config.set("Configuration.Messages.Reload", "Plugin Points reload");
 			config.set("Configuration.Messages.Permit", "Vous ne pouvez pas utiliser cette commande");
 			config.set("Configuration.Messages.Clear", "Les points ont ete reinitialises");
-			config.set("Configuration.Messages.HighScore", "Le High Score est attribue a ");
-			config.set("Configuration.Name.HighScore", "personne");
-			config.set("Configuration.Nombre.HighScore", 0);
 			config.set("Configuration.Messages.Offline", "Joueur non connecte. Utilisez la commande list pour afficher les joueurs connectes");
 			config.set("Configuration.Messages.Nombre", "Veuillez entrer un nombre entier positif pour le nombre de points");
-			
+
+			config.set("Configuration.HighScore.Messages", "Le High Score est attribue a ");
+			config.set("Configuration.HighScore.Name", "personne");
+			config.set("Configuration.HighScore.Nombre", 0);
 			
 			saveYML();
 			config = YamlConfiguration.loadConfiguration(configFile);

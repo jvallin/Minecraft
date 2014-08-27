@@ -2,6 +2,6 @@ name: Concours
 main: balckangel.Concours.Concours
 version: 1.0
 commands:
-  cmd:
-    description: description du plugin
-    usage: /cc [reload|on|off]
+  cc:
+    description: Permet de lancer des missions
+    usage: /cc [reload|on|off|pts|start]

@@ -1,6 +1,6 @@
 name: Points
 main: balckangel.Points.Points
-version: 1.8
+version: 1.9
 commands:
   p:
     description: Permet de gerer les points individuels

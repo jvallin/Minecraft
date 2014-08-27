@@ -357,7 +357,7 @@ Mise en service des plugins :
 	- Points v1.7
 	
 	
-/* 02 août 2014*/	
+/* 02 août 2014 */	
 
 * Modification des plugins pour être compatible avec la version 1.7.10
 
@@ -377,13 +377,19 @@ Mise en service des plugins :
 	- To v1.2
 	- Welcome v1.1
 	- WhatItIs v1.1
+
+	
+/* 27 août 2014 */
+
+* Modification de Points pour ne plus afficher un message lorsqu'un joueur gagne un point
+
+* Ajout du plugin Concours qui permet de lancer des missions		
+	
+* Mise en service des plugins :
+	- Concours v1.0
+	- Points v1.9
 	
 	
-/* 25 août 2014*/	
-
-* Debut du plugin Concours permettant de lancer des concours automatiquement
-
-
 	
 	
 /* TO DO LIST */
