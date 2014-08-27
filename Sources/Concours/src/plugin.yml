@@ -4,4 +4,4 @@ version: 1.0
 commands:
   cc:
     description: Permet de lancer des missions
-    usage: /cc [reload|on|off|pts|start]
+    usage: /cc [reload|on|off|pts|all|start|but]

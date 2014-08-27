@@ -21,9 +21,11 @@ import java.util.Map;
 import java.util.Random;
 
 import org.bukkit.ChatColor;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Skeleton;
 import org.bukkit.entity.Spider;
@@ -35,7 +37,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitScheduler;
 
 public class Concours extends JavaPlugin
 {
@@ -53,6 +54,12 @@ public class Concours extends JavaPlugin
 		{
 			getServer().getPluginManager().registerEvents(listener, this);
 		}
+    	
+    	getServer().getScheduler().scheduleSyncRepeatingTask(this, new Runnable() {
+			public void run() {
+				checker();
+			}
+		}, 10L, 20L); // 20L => repeter toutes les minutes
 	}
 
 	public void onDisable() /* Actions exécutées à la fermeture du plugin */
@@ -93,6 +100,19 @@ public class Concours extends JavaPlugin
 						saveYML();
 						return true;
 					}
+					else if(args[0].equalsIgnoreCase("start"))
+					{
+						if(!(Boolean) config.get("Configuration.Running"))
+						{
+							mission();
+							return true;
+						}
+						else
+						{
+							sender.sendMessage(config.getString("Configuration.Messages.StillRunning"));
+							return true;
+						}
+					}
 					else
 					{
 						sender.sendMessage(ChatColor.RED + config.getString("Configuration.Messages.Permit"));
@@ -120,20 +140,8 @@ public class Concours extends JavaPlugin
 					}					
 				}
 				
-				if(args[0].equalsIgnoreCase("start"))
-				{
-					if(!(Boolean) config.get("Configuration.Running"))
-					{
-						mission();
-						return true;
-					}
-					else
-					{
-						sender.sendMessage(config.getString("Configuration.Messages.StillRunning"));
-						return true;
-					}
-				}
-				else if(args[0].equalsIgnoreCase("high"))
+				
+				if(args[0].equalsIgnoreCase("high"))
 				{
 					sender.sendMessage(config.getString("Configuration.HighScore.Messages") + config.getString("Configuration.HighScore.Name") + " avec " + config.getInt("Configuration.HighScore.Nombre") + " point(s) concours.");
 					return true;
@@ -149,6 +157,34 @@ public class Concours extends JavaPlugin
 					
 					return true;
 				}
+				else if (args[0].equalsIgnoreCase("but"))
+				{
+					if(config.getInt("Configuration.Mission.Numero") == 0)
+					{
+						sender.sendMessage(config.getString("Configuration.Messages.Stop"));
+					}
+					else if(config.getInt("Configuration.Mission.Numero") == 1)
+			        {
+						sender.sendMessage(config.getString("Configuration.Mission.Un.Description"));
+			        }
+			        else if (config.getInt("Configuration.Mission.Numero") == 2)
+			        {
+			        	sender.sendMessage(config.getString("Configuration.Mission.Deux.Description"));
+			        }
+			        else if (config.getInt("Configuration.Mission.Numero") == 3)
+			        {
+			        	sender.sendMessage(config.getString("Configuration.Mission.Trois.Description"));
+			        }
+			        else if (config.getInt("Configuration.Mission.Numero") == 4)
+			        {
+			        	sender.sendMessage(config.getString("Configuration.Mission.Quatre.Description"));
+			        }
+			        else if (config.getInt("Configuration.Mission.Numero") == 5)
+			        {
+			        	sender.sendMessage(config.getString("Configuration.Mission.Cinq.Description"));
+			        }
+					return true;
+				}
 			}		
 		}
 		
@@ -156,10 +192,46 @@ public class Concours extends JavaPlugin
 		return false;
 	}
 	
+	private void checker()
+	{
+		for (World w : getServer().getWorlds())
+		{
+			Long now = w.getTime();
+			
+			if (now > 12500)
+			{
+				if(!(Boolean) config.get("Configuration.Running"))
+				{
+					mission();
+				}
+			}
+			else if (now >= 0 && now <= 19)
+			{
+				getServer().broadcastMessage(config.getString("Configuration.Messages.Stop"));
+                getServer().broadcastMessage("Le gagnant est " + config.getString("Configuration.HighScore.Name") + " avec " + config.getString("Configuration.HighScore.Nombre") + " point(s) concours.");
+                
+                config.set("Configuration.Running", false);
+                config.set("Configuration.Mission.Numero", 0);
+                config.set("Configuration.HighScore.Name", "personne");
+    			config.set("Configuration.HighScore.Nombre", 0);
+                saveYML();
+                
+                collection.clear();
+				
+				for(Player onlinePlayer : getServer().getOnlinePlayers())
+				{
+					collection.put(onlinePlayer.getName(), 0);
+				}
+			}
+			
+			break;
+		}
+	}
+	
 	public void mission()
 	{		
 		Random random = new Random();
-		int alea = random.nextInt(5 - 1) + 1; //(max - min) + min => minimum inclus / maximum exclu
+		int alea = random.nextInt(6 - 1) + 1; //(max - min) + min => minimum inclus / maximum exclu
 		
 		config.set("Configuration.Running", true);
 		config.set("Configuration.Mission.Numero", alea);		
@@ -183,28 +255,10 @@ public class Concours extends JavaPlugin
         {
         	getServer().broadcastMessage(config.getString("Configuration.Mission.Quatre.Description"));
         }
-		
-		BukkitScheduler scheduler = getServer().getScheduler();
-        scheduler.scheduleSyncDelayedTask(this, new Runnable() {
-            @Override
-            public void run() {
-                getServer().broadcastMessage(config.getString("Configuration.Messages.Stop"));
-                getServer().broadcastMessage("Le gagnant est " + config.getString("Configuration.HighScore.Name") + " avec " + config.getString("Configuration.HighScore.Nombre") + " point(s).");
-                
-                config.set("Configuration.Running", false);
-                config.set("Configuration.Mission.Numero", 0);
-                config.set("Configuration.HighScore.Name", "personne");
-    			config.set("Configuration.HighScore.Nombre", 0);
-                saveYML();
-                
-                collection.clear();
-				
-				for(Player onlinePlayer : getServer().getOnlinePlayers())
-				{
-					collection.put(onlinePlayer.getName(), 0);
-				}
-            }
-        }, ((1*60)+(0*1))*20L); //20L = 1 seconde    minute*60 + seconde*1
+        else if (alea == 5)
+        {
+        	getServer().broadcastMessage(config.getString("Configuration.Mission.Cinq.Description"));
+        }
 	}
 	
 	/* Listener */
@@ -259,6 +313,10 @@ public class Concours extends JavaPlugin
 						addPoints(nom, 1);
 					}
 					else if(config.getInt("Configuration.Mission.Numero") == 4 && event.getEntity() instanceof Creeper)
+					{
+						addPoints(nom, 1);
+					}
+					else if(config.getInt("Configuration.Mission.Numero") == 5 && event.getEntity() instanceof Enderman)
 					{
 						addPoints(nom, 1);
 					}
@@ -351,10 +409,12 @@ public class Concours extends JavaPlugin
 			config.createSection("Configuration.HighScore.Nombre"); /* HighScore */
 
 			config.createSection("Configuration.Mission.Numero"); /* Numéro de la mission en cours */
+			config.createSection("Configuration.Mission.Temps"); /* Temps en minute d'une mission */
 			config.createSection("Configuration.Mission.Un.Description"); /* Description de la mission 1 */
 			config.createSection("Configuration.Mission.Deux.Description"); /* Description de la mission 2 */
 			config.createSection("Configuration.Mission.Trois.Description"); /* Description de la mission 3 */
 			config.createSection("Configuration.Mission.Quatre.Description"); /* Description de la mission 4 */
+			config.createSection("Configuration.Mission.Cinq.Description"); /* Description de la mission 5 */
 			
 
 			config.set("Configuration.Active", true);
@@ -373,10 +433,12 @@ public class Concours extends JavaPlugin
 			config.set("Configuration.HighScore.Nombre", 0);
 
 			config.set("Configuration.Mission.Numero", 0);
+			config.set("Configuration.Mission.Temps", 5);
 			config.set("Configuration.Mission.Un.Description", "Tuer le plus de zombies");
 			config.set("Configuration.Mission.Deux.Description", "Tuer le plus de squelettes");
 			config.set("Configuration.Mission.Trois.Description", "Tuer le plus d'araignees");
 			config.set("Configuration.Mission.Quatre.Description", "Tuer le plus de creepers");
+			config.set("Configuration.Mission.Cinq.Description", "Tuer le plus d'enderman");
 			
 			
 			saveYML();

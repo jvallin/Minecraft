@@ -383,7 +383,7 @@ Mise en service des plugins :
 
 * Modification de Points pour ne plus afficher un message lorsqu'un joueur gagne un point
 
-* Ajout du plugin Concours qui permet de lancer des missions		
+* Ajout du plugin Concours qui permet de lancer des missions chaque nuit		
 	
 * Mise en service des plugins :
 	- Concours v1.0
