@@ -390,6 +390,18 @@ Mise en service des plugins :
 	- Points v1.9
 	
 	
+/* 9 septembre 2014 */
+
+* Fusion de Points et de Concours	
+	
+* Mise en service du plugin :
+	- Points v2.0
+	
+* Retrait du plugin :
+	- Concours v1.0
+	
+	
+	
 	
 	
 /* TO DO LIST */
@@ -402,22 +414,16 @@ Mise en service des plugins :
 	=> taille ??
 	=> ban ??
 
-* Modifier Home pour qu'il fasse office de "boussole" et ne téléporte plus (idem pour Back ?) 
-
 * Ajouter les portes dans PrivateProperty ??
 * Ajouter les alambic dans PrivateProperty
 
 * Ajout du plugin Quest qui permet de gérer les quêtes ?
 	=> coupler avec Points ?
 
-* Ajout du plugin Event qui permet de déclencher des event définit ??
-	=> coupler avec points ?
-
 * Affichage de tous les points à la sortie de la nuit ??
-* Utiliser uniquement la classe Joueur dans Points
+* Ajouter la commande Next dans Point pour savoir le prochain drop
 
 * dans Home, ajouter une phrase pour aouter la position du joueur a la connexion ?
+* Modifier Home pour qu'il fasse office de "boussole" et ne téléporte plus (idem pour Back ?) 
 
 * Revoir l'algo de OreDetecor ??
-
-* Ajouter la commande Next dans Point pour savoir le prochain drop

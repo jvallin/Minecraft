@@ -1,0 +1,7 @@
+name: Points
+main: balckangel.Points.Points
+version: 1.9
+commands:
+  p:
+    description: Permet de gerer les points individuels
+    usage: /p [reload|on|off|pts|high|all]

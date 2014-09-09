@@ -1,17 +1,32 @@
 package balckangel.Points;
 
-public class Joueur implements Comparable<Joueur>
+import java.io.Serializable;
+import java.util.UUID;
+
+public class Joueur implements Comparable<Joueur>, Serializable
 {
+	private static final long serialVersionUID = 1L;
+	UUID uuid;
 	String nom;
 	int points;
+	int pointsMission;
+	int victoires;
 	
-	public Joueur(String nom, int points)
+	public Joueur(UUID uuid, String nom, int points, int pointsMission, int victoires)
 	{
 		super();
+		this.uuid = uuid;
 		this.nom = nom;
-		this.points = points;
+		setPoints(points);
+		setPoints(pointsMission);
+		setVictoires(victoires);
 	}
 
+	public UUID getUUID()
+	{
+		return uuid;
+	}
+	
 	public String getNom()
 	{
 		return nom;
@@ -22,7 +37,75 @@ public class Joueur implements Comparable<Joueur>
 		return points;
 	}
 	
-	public int compareTo(Joueur other) { 
+	public int getPointsMission()
+	{
+		return pointsMission;
+	}
+
+	public int getVictoires()
+	{
+		return victoires;
+	}
+	
+	public void setPoints(int points)
+	{
+		this.points = points;
+	}
+	
+	public void setPointsMission(int pointsMission)
+	{
+		this.pointsMission = pointsMission;
+	}
+
+	public void setVictoires(int victoires)
+	{
+		this.victoires = victoires;
+	}
+	
+	public void addPoints(int nb)
+	{
+		points += nb;
+	}
+	
+	public void addPointsMission(int nb)
+	{
+		pointsMission += nb;
+	}
+	
+	public void addVictoires(int nb)
+	{
+		victoires += nb;
+	}
+	
+	public void clearPoints()
+	{
+		points = 0;
+	}
+	
+	public void clearPointsMission()
+	{
+		pointsMission = 0;
+	}
+	
+	public void clearVictoires()
+	{
+		victoires = 0;
+	}
+	
+	public void clearAll()
+	{
+		clearPoints();
+		clearPointsMission();
+		clearVictoires();
+	}
+	
+	public boolean equals(Joueur other)
+	{
+		return other.getUUID().equals(uuid);	  
+	}
+	
+	public int compareTo(Joueur other)
+	{ 
 		if (other.getPoints() > points)
 		{
 			return -1; 
@@ -35,11 +118,16 @@ public class Joueur implements Comparable<Joueur>
 		{
 			return 1;
 		}
-	} 
+	}
 	
 	public String toString()
 	{
-		return (getNom() + " : " + getPoints() + " point(s)");
+		return (getNom() + " : " + getPoints() + " point(s), " + getPointsMission() + " point(s) mission et " + getVictoires() + " victoire(s).");
+	} 
+	
+	public String toStringLog()
+	{
+		return ("Vous avez : " + getPoints() + " point(s), " + getPointsMission() + " point(s) mission et " + getVictoires() + " victoire(s).");
 	}
 	
 }
