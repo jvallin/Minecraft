@@ -3,9 +3,9 @@
 * EditSign plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.2
+* @version 1.3
 * @date 08/01/2012
-* @modification 02/08/0214
+* @modification 09/09/0214
 * 
 * Principle : Permet de modifier le texte d'un panneau
 * Version de Bukkit : for MC 1.7.10
@@ -96,7 +96,8 @@ public class EditSign extends JavaPlugin
 					}
 				}
 			}
-			else if (args.length > 1) /* Si il y a plus d'un argument */
+			
+			if (args.length >= 1) /* Si il y a un ou plus d'un argument */
 			{
 				Player player = null;
 				
@@ -188,7 +189,7 @@ public class EditSign extends JavaPlugin
 								
 								panneau.setLine(content.getNuLigne()-1, content.getMessage()); /* set de la ligne à faire */
 								panneau.update(true); /* Pour reload le texte du panneau */
-								player.sendMessage(EditSign.config.getString("Configuration.Messages.Check")+player_name);
+								player.sendMessage(EditSign.config.getString("Configuration.Messages.Check"));
 							}
 							else
 							{
@@ -263,7 +264,7 @@ public class EditSign extends JavaPlugin
 			config.set("Configuration.Messages.Permit", "Vous ne pouvez pas utiliser cette commande");
 			config.set("Configuration.Messages.Instruction", "Cliquez droit sur un panneau pour le modifier");
 			config.set("Configuration.Messages.Nombre", "Veuillez entrer un numero de ligne entre 1 et 4");
-			config.set("Configuration.Messages.Check", "Panneau modifie ");
+			config.set("Configuration.Messages.Check", "Panneau modifie");
 			config.set("Configuration.Messages.NotPermitSign", "Ce n'est pas votre panneau, phrase supprimee");
 			
 			saveYML();

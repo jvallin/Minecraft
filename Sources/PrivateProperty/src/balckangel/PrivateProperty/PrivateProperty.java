@@ -3,11 +3,11 @@
 * PrivateProperty plugin Bukkit
 * 
 * @author Balckangel
-* @version 1.2
+* @version 1.3
 * @date 01/01/2012
-* @modification 02/08/2014
+* @modification 09/09/2014
 * 
-* Principle : Permet la gestion de coffre et de four personnel
+* Principle : Permet la gestion de coffre, de four et d'alambic personnel
 * Version de Bukkit : for MC 1.7.10
 *
 */
@@ -148,7 +148,7 @@ public class PrivateProperty extends JavaPlugin
 				
 				if(Action.RIGHT_CLICK_BLOCK == clic || Action.LEFT_CLICK_BLOCK == clic)
 				{
-					if(event.getClickedBlock().getType() == Material.CHEST || event.getClickedBlock().getType() == Material.FURNACE || event.getClickedBlock().getType() == Material.BURNING_FURNACE) /* si c'est un coffre ou un four */
+					if(event.getClickedBlock().getType() == Material.CHEST || event.getClickedBlock().getType() == Material.FURNACE || event.getClickedBlock().getType() == Material.BURNING_FURNACE || event.getClickedBlock().getType() == Material.BREWING_STAND) /* si c'est un coffre, un four ou un alambic */
 					{
 						loc = event.getClickedBlock().getLocation();
 						loc.setY(loc.getY()+1);
@@ -171,6 +171,10 @@ public class PrivateProperty extends JavaPlugin
 								else if(event.getClickedBlock().getType() == Material.FURNACE || event.getClickedBlock().getType() == Material.BURNING_FURNACE)/* Si c'est un four */
 								{
 									player.sendMessage(PrivateProperty.config.getString("Configuration.Messages.NotPermitFurnace"));
+								}
+								else if(event.getClickedBlock().getType() == Material.BREWING_STAND)/* Si c'est un alambic */
+								{
+									player.sendMessage(PrivateProperty.config.getString("Configuration.Messages.NotPermitAlambic"));
 								}
 							}
 						}
@@ -225,8 +229,6 @@ public class PrivateProperty extends JavaPlugin
 				String player_name = player.getName();
 				Location loc = event.getBlock().getLocation();
 				
-				//if(event.getBlock().getType() == Material.CHEST || event.getBlock().getType() == Material.FURNACE || event.getBlock().getType() == Material.BURNING_FURNACE) /* si c'est un coffre ou un four */
-				//{
 				if(IsPan(loc))
 				{
 					if(pano != null)
@@ -242,7 +244,6 @@ public class PrivateProperty extends JavaPlugin
 							player.sendMessage(PrivateProperty.config.getString("Configuration.Messages.NotPermitBreak"));
 						}
 					}
-				//}
 				}
 				pano = null;
 				possible = false;
@@ -340,7 +341,8 @@ public class PrivateProperty extends JavaPlugin
 			config.createSection("Configuration.Messages.NotPermitChest"); /* Si ce n'est pas son coffre */
 			config.createSection("Configuration.Messages.NotPermitFurnace"); /* Si ce n'est pas son four */
 			config.createSection("Configuration.Messages.NotPermitSign"); /* Si ce n'est pas son panneau */
-			config.createSection("Configuration.Messages.NotPermitBreak"); /* Si il y a un panneau derriére qui n'est pas é lui */
+			config.createSection("Configuration.Messages.NotPermitAlambic"); /* Si ce n'est pas son alambic */
+			config.createSection("Configuration.Messages.NotPermitBreak"); /* Si il y a un panneau derriere qui n'est pas a lui */
 			
 			
 			config.set("Configuration.Active", true);
@@ -355,6 +357,7 @@ public class PrivateProperty extends JavaPlugin
 			config.set("Configuration.Messages.NotPermitChest", "Ce n'est pas votre coffre");
 			config.set("Configuration.Messages.NotPermitFurnace", "Ce n'est pas votre four");
 			config.set("Configuration.Messages.NotPermitSign", "Ce n'est pas votre panneau");
+			config.set("Configuration.Messages.NotPermitAlambic", "Ce n'est pas votre alambic");
 			config.set("Configuration.Messages.NotPermitBreak", "Un paneau qui ne vous appartient pas est présent sur ce bloc");
 			
 			saveYML();

@@ -313,11 +313,11 @@ Mise en service des plugins :
 
 * Modification de mineur de PrivateProperty et EditSign.
 
-* Modification de PrivatePropery pour empêcher le bloc derrière le panneau d'être détruit
+* Modification de PrivatePropery pour empêcher le bloc derrière le panneau d'être détruit.
 
-* Création d'un .bat pour faire des sauvegardes
+* Création d'un .bat pour faire des sauvegardes.
 
-* Modification de Points pour permettre au serveur d'utiliser la commende /p high
+* Modification de Points pour permettre au serveur d'utiliser la commende /p high.
 
 * Modification de Points pour ajouter une commande /p all qui retourne la liste de tous les points des joueurs.
 
@@ -361,9 +361,9 @@ Mise en service des plugins :
 
 * Modification des plugins pour être compatible avec la version 1.7.10
 
-* Modification de PvP pour prendre en compte la modification du type du paramètre de la méthode Player.damage(Double arg0)
+* Modification de PvP pour prendre en compte la modification du type du paramètre de la méthode Player.damage(Double arg0).
 
-* Compilation des plugins Points, To avec des "Warning" dû à des méthodes "deprecated"
+* Compilation des plugins Points, To avec des "Warning" dû à des méthodes "deprecated".
 
 * Mise en service des plugins :
 	- Back v1.1
@@ -381,9 +381,9 @@ Mise en service des plugins :
 	
 /* 27 août 2014 */
 
-* Modification de Points pour ne plus afficher un message lorsqu'un joueur gagne un point
+* Modification de Points pour ne plus afficher un message lorsqu'un joueur gagne un point.
 
-* Ajout du plugin Concours qui permet de lancer des missions chaque nuit		
+* Ajout du plugin Concours qui permet de lancer des missions chaque nuit.		
 	
 * Mise en service des plugins :
 	- Concours v1.0
@@ -392,10 +392,16 @@ Mise en service des plugins :
 	
 /* 9 septembre 2014 */
 
-* Fusion de Points et de Concours	
+* Fusion de Points et de Concours
+
+* Modification de EditSign pour permettre de remplir une ligne sans texte.
+
+* Modification de PrivateProperty pour ajouter les alambics.
 	
-* Mise en service du plugin :
+* Mise en service des plugins :
+	- EditSign v1.3
 	- Points v2.0
+	- PrivateProperty v1.3
 	
 * Retrait du plugin :
 	- Concours v1.0
@@ -406,6 +412,8 @@ Mise en service des plugins :
 	
 /* TO DO LIST */
 
+* Ajouter un plugin qui permet de chatter les caract. d'un objet en main
+
 * Ajouter un plugin permettant de gérer un timer non-agression (dans PvP ?)
 * Révoquer un joueur de l'équipe dans PvP => Ajouter le leader ?
 * Modifier PvP pour créer les équipe à la demande du joueur et non plus en "dur" ? 
@@ -415,7 +423,6 @@ Mise en service des plugins :
 	=> ban ??
 
 * Ajouter les portes dans PrivateProperty ??
-* Ajouter les alambic dans PrivateProperty
 
 * Ajout du plugin Quest qui permet de gérer les quêtes ?
 	=> coupler avec Points ?

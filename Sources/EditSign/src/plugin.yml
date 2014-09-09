@@ -1,6 +1,6 @@
 name: EditSign
 main: balckangel.EditSign.EditSign
-version: 1.2
+version: 1.3
 commands:
   es:
     description: Permet de modifier le texte d'un panneau
